@@ -51,134 +51,165 @@ export default function FavoritedTVStudy() {
             Role
           </dt>
           <dd className="mt-1">
-            Solo build (engineering + design + ops handoff)
+            Solo build — engineering, product, design, ops handoff
           </dd>
         </div>
         <div>
           <dt className="font-mono text-xs uppercase tracking-widest text-[color:var(--muted)]">
             Build window
           </dt>
-          <dd className="mt-1">~30 hours across three sittings</dd>
+          <dd className="mt-1">~30 hours · May 13 – 19, 2026</dd>
         </div>
         <div>
           <dt className="font-mono text-xs uppercase tracking-widest text-[color:var(--muted)]">
             Stack
           </dt>
           <dd className="mt-1 font-mono text-xs text-[color:var(--muted)]">
-            tvOS 18 · SwiftUI · LiveKit v2 · Next.js · Vercel · Supabase
+            tvOS 18 · SwiftUI · LiveKit v2 · Next.js · Vercel · Supabase ·
+            Apple Business Manager · Mosyle MDM
           </dd>
         </div>
       </dl>
 
+      <H2>The before</H2>
       <P>
         For a long time, the office TVs ran on a system that's almost charmingly
-        analog by 2026 standards.
+        analog by 2026 standards. Every week, our operations manager{" "}
+        <strong>MaiLinh</strong> would open Adobe Premiere, hand-update the
+        leaderboard scores, render a fresh video, upload it to a Plex server,
+        and then walk through the office turning the playback on for each Apple
+        TV individually.
       </P>
       <P>
-        Every week, our operations manager would open Adobe Premiere, update the
-        weekly leaderboard scores by hand, render a fresh video, upload it to a
-        Plex server, and then walk through the office turning on the playback on
-        each Apple TV individually. Daily updates weren't even an option — the
-        render-and-deploy loop was too expensive. Weekly updates were always a
-        little late. And anything <em>dynamic</em> — anything that needed to
-        reflect what was happening right now — was simply off the table.
+        Daily updates weren't even an option. The render-and-deploy loop was
+        too expensive. Weekly updates were always a little late. And anything{" "}
+        <em>dynamic</em> — anything that needed to reflect what was happening
+        right now — was off the table.
       </P>
-      <P>I replaced the whole thing with a tvOS app in about 30 hours.</P>
+      <Quote>
+        From the Slack note I sent the team after the first ship:
+        &ldquo;I've been working on a new Apple TV application to replace the
+        videos MaiLinh has been making for the office. This will let her
+        control the display dynamically without needing to refresh everything
+        manually, giving us dynamic live data.&rdquo;
+      </Quote>
 
       <H2>The shift</H2>
       <P>
         The TV stopped being a video player and started being a small piece of
-        software. Each Apple TV now boots into a SwiftUI app that pulls a list
-        of &ldquo;slides&rdquo; from Supabase and cycles through them with an
-        A/B slot crossfade. A slide is either a static image (still uploaded by
+        software. Each Apple TV boots into a SwiftUI app that pulls a list of
+        &ldquo;slides&rdquo; from Supabase and cycles through them with an A/B
+        slot crossfade. A slide is either a static image (still uploaded by
         ops, no rendering needed) or a <em>dynamic</em> slide — code that pulls
-        fresh data each time it appears. Distribution is via Apple Business
-        Manager and Mosyle MDM, so an Xcode archive can replace every TV in the
-        office at once.
+        fresh data each time it appears.
+      </P>
+      <P>
+        Distribution is via{" "}
+        <strong>Apple Business Manager + Mosyle MDM</strong> as a custom app —
+        so I push to GitHub, archive a build, and our IT admin promotes it to
+        every Apple TV in the office. No one walks anywhere.
       </P>
 
-      <P>Once the TV was code, the manual workflow disappeared:</P>
+      <H2>What got built, day by day</H2>
+
+      <H3>Day 1 — slide engine & Strava</H3>
       <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
         <li>
-          <strong>Favorited daily &amp; weekly leaderboards</strong> — synced
-          from a Google Sheet ops already maintains (5-minute cron in the
-          admin), with an animated podium layout and change detection that only
-          bumps the &ldquo;updated&rdquo; timestamp on real changes.
+          Supabase schema for slides (type, dynamic_key, duration, order,
+          enabled).
         </li>
         <li>
-          <strong>Strava monthly leaderboard</strong> — pulled live from the
-          company's Strava club via OAuth, with athlete avatars and team
-          departments. Auto-refreshes three times a day.
+          SwiftUI slideshow with A/B slot crossfade — incoming slide mounts in
+          the inactive slot, opacity animates, slots flip, outgoing slot
+          clears.
         </li>
         <li>
-          <strong>Internal beta leaderboard</strong> — beta tester rankings by
-          feedback and activity, with fuzzy-matching to Strava athletes for
-          avatars (initials fallback for unmatched), refreshed hourly.
+          Strava monthly leaderboard pulled live from the company's Strava
+          club via OAuth.
         </li>
         <li>
-          <strong>Live wall</strong> — a 3×2 grid of muted Favorited livestreams
-          so the team can glance over and see what's happening on the platform.
-          Built late in the project; details below.
+          Skip-to-next and skip-to-previous via the Siri Remote, with rapid-
+          press debouncing so quick taps don't desync the slot state.
         </li>
       </ul>
 
-      <P>
-        Each Apple TV stopped needing in-person attention. Updates went from
-        weekly-and-stale to whatever-the-data-says-right-now.
-      </P>
-
-      <H2>The pieces that hold it together</H2>
-
-      <H3>A/B slot crossfade slideshow</H3>
-      <P>
-        The slideshow keeps two SwiftUI slots and swaps active/inactive between
-        them, so the incoming slide can mount and start its work behind the
-        outgoing one. The crossfade is animated via opacity on the slot
-        wrappers; rapid skips cancel and snap cleanly. Same-image-into-itself
-        gets a fade-to-black-and-back so it's never invisible.
-      </P>
-
-      <H3>Shared avatar cache (memory + disk)</H3>
-      <P>
-        Leaderboards have a lot of avatars and the TV is a glance-medium — a
-        flicker on render is unacceptable. So I built a singleton{" "}
-        <Mono>AvatarCache</Mono> with two layers: a 24-hour disk cache for
-        cross-launch persistence, and an in-memory map for synchronous reads
-        during view body. The slideshow preloads the next two slides' data
-        +&nbsp;avatars in the background, so by the time the crossfade fires,
-        the views render straight from memory with no async holes.
-      </P>
-
-      <H3>The admin (Next.js on Vercel)</H3>
-      <P>
-        Ops needed a way to manage slides without me. The admin app has:
-      </P>
+      <H3>Day 2 — admin panel & three more leaderboards</H3>
       <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
         <li>
-          Drag-and-drop reorder, multi-file upload, and an image gallery for
-          the static image slides.
+          Drag-and-drop slide reorder, multi-file upload, and a reusable image
+          gallery in the Next.js admin so ops doesn't re-upload the same hero
+          twice.
         </li>
         <li>
-          Team management — departments, avatar upload, &ldquo;Sync from Center
-          Code&rdquo; button to pull org-wide.
+          Team page with department dropdowns (Operations, Marketing, Product,
+          Engineering, Data, Trust &amp; Safety, Customer Support, CG, Design),
+          plus avatar upload — including paste-from-clipboard so MaiLinh can
+          copy Slack profile pics straight into the admin.
         </li>
         <li>
-          Cron-driven sync routes for each data source (Favorited every 5 min,
-          internal beta hourly, Strava 3× daily).
+          Favorited daily &amp; weekly leaderboards synced from a Google Sheet
+          via a service account, with change-detection so the &ldquo;updated
+          X ago&rdquo; timestamp only ticks on real changes.
         </li>
         <li>
-          Auth-gated dashboard (session cookie), with specific cron paths
-          bypassed so the schedulers can hit them.
+          Internal beta leaderboard pulled from the Favorited API, with a
+          crown on #1 and an animated podium that pops in by bar height.
+        </li>
+        <li>
+          Typography fight: Inter felt thin on the TV at viewing distance.
+          Proxima Nova was close but not quite. Landed on Apercu Pro after
+          three rounds.
         </li>
       </ul>
+
+      <H3>Day 3 — caches, polish, and distribution</H3>
+      <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
+        <li>
+          Universal people directory: <Mono>strava_athletes</Mono> became the
+          canonical people table; the internal beta leaderboard fuzzy-matches
+          names against it for avatars, with first-two-letters initials as the
+          fallback for streamers we don't have a face for yet.
+        </li>
+        <li>
+          A shared <Mono>AvatarCache</Mono> singleton: 24-hour disk persistence
+          + an in-memory map so views can read synchronously during body
+          render. No flicker on crossfade.
+        </li>
+        <li>
+          Slides preload two ahead — data + avatars — during the previous
+          slide's hold time, so the crossfade arrives at fully-ready views.
+        </li>
+        <li>
+          Relative timestamps with spelled-out numbers ≤ 12 (&ldquo;updated
+          twelve minutes ago&rdquo;, not &ldquo;12 minutes ago&rdquo;).
+        </li>
+        <li>
+          Same-image-into-itself crossfade fix: when consecutive slides resolve
+          to the same image, the slot fades to black and back instead of
+          rendering invisible.
+        </li>
+        <li>
+          App Store Connect submission as a custom app, with the org targeted
+          at our company's Apple Business Manager ID, then pushed to every
+          enrolled Apple TV via Mosyle MDM.
+        </li>
+      </ul>
+
+      <H3>Day 4 — the live wall</H3>
+      <P>
+        See the deep-dive below. This is the chapter I spent the most time
+        documenting because it's the most technically interesting — but it's
+        also the chapter that's only possible because Days 1–3 already turned
+        the TV into something you could ship code to.
+      </P>
 
       <H2>The technical deep-dive: a live wall of streams</H2>
       <P>
         The headline win of the &ldquo;TV-as-app&rdquo; rewrite isn't faster
-        updates — it's features that were previously impossible. Specifically: a
-        3×2 grid of Favorited creators streaming live, muted, sitting in your
-        peripheral vision so the team can glance over and see what's happening
-        on the platform.
+        updates — it's features that were previously impossible. Specifically:
+        a 3×2 grid of Favorited creators streaming live, muted, sitting in
+        your peripheral vision so the team can glance over and see what's
+        happening on the platform.
       </P>
       <Quote>
         You can't render that in Premiere. You can render any number of frames,
@@ -187,22 +218,22 @@ export default function FavoritedTVStudy() {
 
       <H3>The detective work</H3>
       <P>
-        Favorited's streaming API isn't documented externally. I had an iOS repo
-        (Swift, LiveKit-based), a Flutter repo (Agora-based), and one
+        Favorited's streaming API isn't documented externally. I had an iOS
+        repo (Swift, LiveKit-based), a Flutter repo (Agora-based), and one
         long-lived auth JWT. So the first hour was reading source:
       </P>
       <ol className="my-4 list-decimal space-y-2 pl-6 leading-7">
         <li>
           The iOS repo's <Mono>LivestreamRoom</Mono> protocol has both LiveKit
-          and Agora backends. The Agora token endpoint was stubbed with a TODO.
-          Production runs on LiveKit.
+          and Agora backends. The Agora token endpoint was stubbed with a
+          TODO. Production runs on LiveKit.
         </li>
         <li>
           The Flutter repo's generated <Mono>pb.dart</Mono> files exposed the
           real gRPC service:{" "}
           <Mono>com.favorited.grpc.LivestreamTokenService</Mono>. No{" "}
-          <Mono>.proto</Mono> source was in the repo, so I synthesized one from
-          the descriptor JSON.
+          <Mono>.proto</Mono> source was in the repo, so I synthesized one
+          from the descriptor JSON.
         </li>
         <li>
           I verified the whole contract with <Mono>curl</Mono> and{" "}
@@ -213,12 +244,11 @@ export default function FavoritedTVStudy() {
       </ol>
       <P>
         One surprise: the obvious <Mono>livestreams</Mono> GraphQL query
-        returned 100% LKRTC streams and zero Agora. The Flutter app's watch
-        screen actually uses a <em>different</em> query —{" "}
-        <Mono>discoverLivestreams</Mono> — which surfaces a different pool that
-        includes both. &ldquo;The endpoint you'd guess is the wrong one&rdquo;
-        is exactly the kind of thing that eats hours when you're working from
-        indirect signals.
+        returned 100% LKRTC streams. The Flutter app's watch screen actually
+        uses a <em>different</em> query — <Mono>discoverLivestreams</Mono> —
+        which surfaces a different pool that includes Agora streams. &ldquo;The
+        endpoint you'd guess is the wrong one&rdquo; is exactly the kind of
+        thing that eats hours when you're working from indirect signals.
       </P>
 
       <H3>Architecture</H3>
@@ -256,17 +286,17 @@ Apple TV  ──WSS────────────────────�
         <li>
           <strong>Two-layer preload</strong> — the slideshow's existing{" "}
           <Mono>preloadUpcoming()</Mono> warms a stream cache during the
-          previous slide; then the slide itself is mounted <em>invisibly</em> 5
-          seconds before the visible fade, so LiveKit rooms finish connecting in
-          the dark.
+          previous slide; then the slide itself is mounted <em>invisibly</em>{" "}
+          5 seconds before the visible fade, so LiveKit rooms finish
+          connecting in the dark.
         </li>
       </ul>
       <P>
         That last one matters most. The slideshow's timer used to be{" "}
         <Mono>sleep(duration) → fade</Mono>. I split it into{" "}
         <Mono>sleep(duration − 5s) → stage invisibly → sleep(5s) → fade</Mono>.
-        By the time the live wall becomes visible, the rooms are already showing
-        video. There's no loading state, ever.
+        By the time the live wall becomes visible, the rooms are already
+        showing video. There's no loading state, ever.
       </P>
 
       <H2>Before / after</H2>
@@ -290,7 +320,7 @@ Apple TV  ──WSS────────────────────�
               [
                 "Deploying to each Apple TV",
                 "Manual, in-person",
-                "One push, every TV reflects",
+                "Push to GitHub, MDM fans it out",
               ],
               [
                 "Live content",
@@ -298,8 +328,8 @@ Apple TV  ──WSS────────────────────�
                 "A wall of streams, refreshing on a cycle",
               ],
               [
-                "Ops manager's calendar",
-                "A weekly render block",
+                "MaiLinh's weekly calendar",
+                "A render block",
                 "That time back",
               ],
             ].map(([k, b, a]) => (
@@ -312,10 +342,15 @@ Apple TV  ──WSS────────────────────�
           </tbody>
         </table>
       </div>
+
       <P>
-        30 hours, end to end. The shift from &ldquo;rendered video on Plex&rdquo;
-        to &ldquo;app pulling from Supabase&rdquo; paid for itself the first
-        week ops didn't have to open Premiere.
+        30 hours, end to end. The shift from &ldquo;rendered video on
+        Plex&rdquo; to &ldquo;app pulling from Supabase&rdquo; paid for itself
+        the first week ops didn't have to open Premiere. The live wall is the
+        chapter that wouldn't have been possible at all under the old setup —
+        but it's only the latest of several things that wouldn't have been
+        possible. Each new dynamic slide costs an afternoon now; under the
+        old system, it cost MaiLinh a Tuesday.
       </P>
     </div>
   );
