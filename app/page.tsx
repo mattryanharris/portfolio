@@ -3,59 +3,37 @@ import { projects } from "./data/projects";
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16">
-      <section className="mb-16 max-w-3xl">
-        <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
-          Software & design at the edges of consumer products.
-        </h1>
-        <p className="mt-4 text-lg text-[color:var(--muted)]">
-          Solo builds, mostly. Apple TV apps, iOS, small Next.js services that
-          make a stubborn workflow disappear.
-        </p>
-      </section>
-
-      <section>
-        <header className="mb-6 flex items-baseline justify-between font-mono text-xs uppercase tracking-widest text-[color:var(--muted)]">
-          <span>Selected work</span>
-          <span>{projects.length} projects</span>
-        </header>
-
-        <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
-            <li key={p.slug} className="bg-white">
-              <Link
-                href={`/projects/${p.slug}`}
-                className="group block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
-              >
+    <div className="px-12 py-10">
+      {/* Dense grid of project "products" — isolated marks on neutral bg,
+          no card chrome. Title shows on hover, matching the supply.openai.com
+          catalog vibe. */}
+      <ul className="grid grid-cols-3 gap-x-6 gap-y-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+        {projects.map((p) => (
+          <li key={p.slug}>
+            <Link
+              href={`/projects/${p.slug}`}
+              scroll={false}
+              className="group block focus:outline-none"
+              aria-label={p.title}
+            >
+              {/* Project "mark" — a chunky colored square with the cover label */}
+              <div className="relative aspect-square w-full overflow-hidden rounded-sm transition-transform duration-200 group-hover:-translate-y-1">
                 <div
-                  className="relative aspect-[4/3] w-full overflow-hidden"
+                  className="absolute inset-0"
                   style={{ background: p.cover.background }}
-                >
-                  <span className="absolute bottom-4 left-4 font-mono text-xs text-white/90 mix-blend-screen">
-                    {p.cover.label}
-                  </span>
-                  <span className="absolute top-4 right-4 font-mono text-xs text-white/70">
-                    {p.year}
-                  </span>
-                </div>
-                <div className="flex items-start justify-between gap-4 p-5">
-                  <div>
-                    <h2 className="text-base font-medium tracking-tight group-hover:text-[color:var(--accent)]">
-                      {p.title}
-                    </h2>
-                    <p className="mt-1 text-sm text-[color:var(--muted)]">
-                      {p.tagline}
-                    </p>
-                  </div>
-                  <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-[color:var(--muted)]">
-                    {p.category}
-                  </span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+                />
+                <span className="absolute inset-0 flex items-end justify-start p-3 text-[11px] tracking-tight text-white/95 mix-blend-screen">
+                  {p.cover.label}
+                </span>
+              </div>
+              {/* Title appears on hover */}
+              <div className="mt-2 h-4 text-center text-[11px] text-[color:var(--foreground)] opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+                {p.title}
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
