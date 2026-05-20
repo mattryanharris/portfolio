@@ -42,6 +42,29 @@ export const summaries: Record<string, ReactNode> = {
   ),
 
   // ───────── personal ─────────
+  "message-matt": (
+    <>
+      <P>
+        A receipt printer hub for my apartment. I wired up an Epson TM-m30II
+        thermal printer to a small web app so the household can drop physical
+        printouts on demand. Built in two layers:
+      </P>
+      <Bullets
+        items={[
+          "Task Printer — the technical foundation. A web UI to compose receipts (alignment, size, bold, QR codes), a print queue, and a printer monitor that shows live status.",
+          "Message Matt — the consumer hub on top. Three features: Task Master (household task tickets), Telegram Service (old-school telegrams printed to the receipt printer), and Fortune Teller (a mystical fortune on a strip of paper, on demand).",
+        ]}
+      />
+      <P>
+        The fun part is the form factor: digital things become physical, the
+        printer chunks out a few inches of paper, you tear it off the roll, and
+        suddenly &ldquo;don't forget to take out the recycling&rdquo; is a
+        receipt sitting on the counter — much harder to ignore than a Slack
+        message that scrolls away.
+      </P>
+    </>
+  ),
+
   tidy: (
     <>
       <P>

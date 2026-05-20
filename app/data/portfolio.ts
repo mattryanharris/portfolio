@@ -118,6 +118,16 @@ export const projects: Project[] = [
     cover: { background: "#10b981", label: "tidy" },
     status: "summary",
   },
+  {
+    slug: "message-matt",
+    title: "Message Matt",
+    tagline:
+      "A household receipt-printer hub. Task tickets, telegrams, and fortunes printed on an Epson thermal printer.",
+    companyId: "personal",
+    year: "2025",
+    cover: { background: "#f59e0b", label: "message.matt" },
+    status: "summary",
+  },
 
   // ───────── Disney ─────────
   {
