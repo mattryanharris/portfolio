@@ -9,6 +9,14 @@ function P({ children }: { children: ReactNode }) {
   return <p className="my-4 leading-7 text-[#222]">{children}</p>;
 }
 
+function Mono({ children }: { children: ReactNode }) {
+  return (
+    <code className="rounded bg-[#f6f7f8] px-1.5 py-0.5 font-mono text-[0.9em]">
+      {children}
+    </code>
+  );
+}
+
 function Bullets({ items }: { items: string[] }) {
   return (
     <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
@@ -48,21 +56,39 @@ export const summaries: Record<string, ReactNode> = {
         a few weekends ago i got obsessed with the idea of those ticket
         printers from the bear, the ones spitting out orders, and thought
         &ldquo;wow, that sounds awesome and not chaotic or stressful, i want
-        that for my desk&rdquo; and so i went on facebook marketplace and
-        bought a receipt printer. it was easy to setup right? WRONG.
+        that for my desk.&rdquo; so i went on facebook marketplace and bought
+        a used Epson TM-m30II.
+      </P>
+      <P>it was easy to set up, right? WRONG.</P>
+      <P>
+        it took firmware updates, epson network utilities from 2009, default
+        passwords that turned out to be the printer&rsquo;s serial number, and
+        more googling than i&rsquo;d like to admit. the breakthrough was
+        finding a thing called <em>Server Direct Print</em> buried in the
+        manual: instead of an app pushing jobs <em>to</em> the printer, the
+        printer reaches out to my server every few seconds and asks{" "}
+        <em>got anything for me?</em> if there&rsquo;s a message waiting it
+        prints it; if not, it goes back to sleep. backwards from how printers
+        usually work, but it meant i could host the whole thing on the
+        internet instead of fighting drivers.
       </P>
       <P>
-        it took firmware updates, epson network utilities from 2009, and more
-        googling than i'd like to admit, but eventually i got it to print
-        messages over the internet.
+        the catch: the printer wants the response in a very specific XML
+        dialect Epson calls ePOS-Print, wrapped in tags that have to be cased
+        exactly right or the printer silently ignores them. once that was
+        wired up, a different problem cropped up: every curly quote came out
+        as a <Mono>?</Mono>. turns out thermal printers live in 1995 and only
+        speak old code pages, so the server now strips smart quotes, em
+        dashes, ellipses, and other typography down to ASCII before sending.
       </P>
       <P>
-        the printer constantly &ldquo;polls&rdquo; a tiny server i built —
-        every few seconds it asks, &ldquo;got anything for me?&rdquo; if
-        there's a message waiting, it prints it; if not, it goes back to sleep.
-        anyone can send notes, fortunes, or random thoughts to it through a
-        simple web form, and they show up seconds later as little paper
-        telegrams on my desk.
+        now anyone can send notes, fortunes, or random thoughts to it through
+        a tiny web form, and they show up seconds later as little paper
+        telegrams on my desk. there&rsquo;s a fortune teller mode (mystical
+        nonsense on demand), a task ticket mode (kitchen-style chits for
+        chores), and a reading mode that prints exactly one minute of
+        whatever book i&rsquo;m in the middle of and trims it off the source
+        file so the next minute starts where i left off.
       </P>
       <P>
         it&rsquo;s loud, unnecessary, and somehow perfect.
