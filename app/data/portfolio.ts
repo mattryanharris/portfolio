@@ -122,7 +122,7 @@ export const projects: Project[] = [
     slug: "message-matt",
     title: "Message Matt",
     tagline:
-      "A household receipt-printer hub. Task tickets, telegrams, and fortunes printed on an Epson thermal printer.",
+      "A receipt printer on my desk that takes telegrams from anyone on the internet. Inspired by The Bear.",
     companyId: "personal",
     year: "2025",
     cover: { background: "#f59e0b", label: "message.matt" },

@@ -45,22 +45,27 @@ export const summaries: Record<string, ReactNode> = {
   "message-matt": (
     <>
       <P>
-        A receipt printer hub for my apartment. I wired up an Epson TM-m30II
-        thermal printer to a small web app so the household can drop physical
-        printouts on demand. Built in two layers:
+        a few weekends ago i got obsessed with the idea of those ticket
+        printers from the bear, the ones spitting out orders, and thought
+        &ldquo;wow, that sounds awesome and not chaotic or stressful, i want
+        that for my desk&rdquo; and so i went on facebook marketplace and
+        bought a receipt printer. it was easy to setup right? WRONG.
       </P>
-      <Bullets
-        items={[
-          "Task Printer — the technical foundation. A web UI to compose receipts (alignment, size, bold, QR codes), a print queue, and a printer monitor that shows live status.",
-          "Message Matt — the consumer hub on top. Three features: Task Master (household task tickets), Telegram Service (old-school telegrams printed to the receipt printer), and Fortune Teller (a mystical fortune on a strip of paper, on demand).",
-        ]}
-      />
       <P>
-        The fun part is the form factor: digital things become physical, the
-        printer chunks out a few inches of paper, you tear it off the roll, and
-        suddenly &ldquo;don't forget to take out the recycling&rdquo; is a
-        receipt sitting on the counter — much harder to ignore than a Slack
-        message that scrolls away.
+        it took firmware updates, epson network utilities from 2009, and more
+        googling than i'd like to admit, but eventually i got it to print
+        messages over the internet.
+      </P>
+      <P>
+        the printer constantly &ldquo;polls&rdquo; a tiny server i built —
+        every few seconds it asks, &ldquo;got anything for me?&rdquo; if
+        there's a message waiting, it prints it; if not, it goes back to sleep.
+        anyone can send notes, fortunes, or random thoughts to it through a
+        simple web form, and they show up seconds later as little paper
+        telegrams on my desk.
+      </P>
+      <P>
+        it&rsquo;s loud, unnecessary, and somehow perfect.
       </P>
     </>
   ),
