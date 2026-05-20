@@ -68,7 +68,7 @@ function ProjectTile({
         aria-label={project.title}
       >
         <div
-          className={`relative aspect-square w-full overflow-hidden rounded-sm transition-transform duration-[400ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-2 group-hover:scale-[1.06] ${
+          className={`relative aspect-square w-full overflow-hidden rounded-sm transition-transform duration-[400ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-2 group-hover:scale-[1.06] group-hover:rotate-[4deg] ${
             dimmed ? "opacity-20 saturate-50" : "opacity-100"
           }`}
         >
@@ -80,7 +80,7 @@ function ProjectTile({
               alt={project.title}
               fill
               sizes="(max-width: 640px) 33vw, (max-width: 1024px) 20vw, 14vw"
-              className="object-contain p-5"
+              className="object-contain p-8"
             />
           ) : (
             // Solid-color tile with a mono cover label.
