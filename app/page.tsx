@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   projects,
@@ -75,9 +76,19 @@ function ProjectTile({
             className="absolute inset-0"
             style={{ background: project.cover.background }}
           />
-          <span className="absolute inset-0 flex items-end justify-start p-3 text-[11px] tracking-tight text-white/95 mix-blend-screen">
-            {project.cover.label}
-          </span>
+          {project.cover.image ? (
+            <Image
+              src={project.cover.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 640px) 33vw, (max-width: 1024px) 20vw, 14vw"
+              className="object-contain p-4"
+            />
+          ) : (
+            <span className="absolute inset-0 flex items-end justify-start p-3 text-[11px] tracking-tight text-white/95 mix-blend-screen">
+              {project.cover.label}
+            </span>
+          )}
         </div>
         <div
           className={`mt-2 h-4 text-center text-[11px] text-[color:var(--foreground)] transition-opacity duration-150 ${

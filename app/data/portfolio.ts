@@ -12,7 +12,13 @@ export type Project = {
   tagline: string;
   companyId: string;
   year: string;
-  cover: { background: string; label: string };
+  cover: {
+    background: string;
+    label: string;
+    /** Optional image path under /public. When set, the catalog tile shows
+     *  this image centered on the background instead of the bare color block. */
+    image?: string;
+  };
   status: "case-study" | "summary";
 };
 
@@ -83,7 +89,11 @@ export const projects: Project[] = [
       "An Apple TV app that replaced a weekly manual video render. Built in ~30 hours.",
     companyId: "favorited",
     year: "2026",
-    cover: { background: "#0000ff", label: "favorited.tv" },
+    cover: {
+      background: "#f2f2f2",
+      label: "favorited.tv",
+      image: "/projects/favoritedtv.png",
+    },
     status: "case-study",
   },
   {
