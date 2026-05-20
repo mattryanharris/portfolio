@@ -52,8 +52,8 @@ export default function ProjectModal({
           ✕
         </button>
 
-        {/* Scrollable case-study body */}
-        <div className="flex-1 overflow-y-auto font-sans text-[color:var(--foreground)]">
+        {/* Scrollable case-study body — scrollbar hidden via .no-scrollbar */}
+        <div className="no-scrollbar flex-1 overflow-y-auto font-sans text-[color:var(--foreground)]">
           {/* Hero band */}
           <div
             className="relative flex aspect-[16/8] w-full items-end"
