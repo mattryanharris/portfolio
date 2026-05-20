@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
-import type { Project } from "../../data/projects";
+import type { Project } from "../../data/portfolio";
 
 /** Click-outside / Esc-to-close modal containing a full case study.
  *  Backed by Next.js intercepting routes — the underlying URL changes to
@@ -10,9 +10,11 @@ import type { Project } from "../../data/projects";
  */
 export default function ProjectModal({
   project,
+  companyName,
   children,
 }: {
   project: Project;
+  companyName?: string;
   children: ReactNode;
 }) {
   const router = useRouter();
@@ -69,9 +71,11 @@ export default function ProjectModal({
 
           {/* Header */}
           <header className="border-b border-[color:var(--border)] px-8 pt-8 pb-6">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-[color:var(--muted)]">
-              {project.category}
-            </p>
+            {companyName && (
+              <p className="font-mono text-[11px] uppercase tracking-widest text-[color:var(--muted)]">
+                {companyName}
+              </p>
+            )}
             <h1 className="mt-2 font-sans text-3xl font-semibold tracking-tight">
               {project.title}
             </h1>

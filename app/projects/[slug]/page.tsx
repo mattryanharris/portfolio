@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, getProject } from "../../data/projects";
+import { projects, getProject, getCompany } from "../../data/portfolio";
+import { summaries } from "../../data/summaries";
 import FavoritedTVStudy from "./_studies/favoritedtv";
-import Placeholder from "./_studies/placeholder";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -16,6 +16,7 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
+  const company = getCompany(project.companyId);
 
   return (
     <article className="font-sans">
@@ -35,7 +36,7 @@ export default async function ProjectPage({
         <header className="mb-10 flex items-baseline justify-between gap-6 border-b border-[color:var(--border)] pb-6">
           <div>
             <p className="font-mono text-xs uppercase tracking-widest text-[color:var(--muted)]">
-              {project.category}
+              {company?.name}
             </p>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
               {project.title}
@@ -52,11 +53,15 @@ export default async function ProjectPage({
           </Link>
         </header>
 
-        {project.slug === "favoritedtv" ? (
-          <FavoritedTVStudy />
-        ) : (
-          <Placeholder project={project} />
-        )}
+        <div className="text-[15px]">
+          {project.slug === "favoritedtv" ? (
+            <FavoritedTVStudy />
+          ) : (
+            summaries[project.slug] ?? (
+              <p className="leading-7 text-[#222]">{project.tagline}</p>
+            )
+          )}
+        </div>
       </div>
     </article>
   );

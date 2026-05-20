@@ -1,7 +1,11 @@
 import { notFound } from "next/navigation";
-import { getProject, projects } from "../../../data/projects";
+import {
+  getProject,
+  getCompany,
+  projects,
+} from "../../../data/portfolio";
+import { summaries } from "../../../data/summaries";
 import FavoritedTVStudy from "../../../projects/[slug]/_studies/favoritedtv";
-import Placeholder from "../../../projects/[slug]/_studies/placeholder";
 import ProjectModal from "../../_components/ProjectModal";
 
 export function generateStaticParams() {
@@ -16,13 +20,16 @@ export default async function InterceptedProjectPage({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
+  const company = getCompany(project.companyId);
 
   return (
-    <ProjectModal project={project}>
+    <ProjectModal project={project} companyName={company?.name}>
       {project.slug === "favoritedtv" ? (
         <FavoritedTVStudy />
       ) : (
-        <Placeholder project={project} />
+        summaries[project.slug] ?? (
+          <p className="leading-7 text-[#222]">{project.tagline}</p>
+        )
       )}
     </ProjectModal>
   );
