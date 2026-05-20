@@ -72,22 +72,27 @@ function ProjectTile({
             dimmed ? "opacity-20 saturate-50" : "opacity-100"
           }`}
         >
-          <div
-            className="absolute inset-0"
-            style={{ background: project.cover.background }}
-          />
           {project.cover.image ? (
+            // Image tile: photo fills the square, no colored backdrop.
+            // Sits on the page bg, no visible card edge.
             <Image
               src={project.cover.image}
               alt={project.title}
               fill
               sizes="(max-width: 640px) 33vw, (max-width: 1024px) 20vw, 14vw"
-              className="object-contain p-4"
+              className="object-cover"
             />
           ) : (
-            <span className="absolute inset-0 flex items-end justify-start p-3 text-[11px] tracking-tight text-white/95 mix-blend-screen">
-              {project.cover.label}
-            </span>
+            // Solid-color tile with a mono cover label.
+            <>
+              <div
+                className="absolute inset-0"
+                style={{ background: project.cover.background }}
+              />
+              <span className="absolute inset-0 flex items-end justify-start p-3 text-[11px] tracking-tight text-white/95 mix-blend-screen">
+                {project.cover.label}
+              </span>
+            </>
           )}
         </div>
         <div
