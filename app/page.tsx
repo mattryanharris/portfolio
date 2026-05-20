@@ -1,9 +1,8 @@
 import Link from "next/link";
 import {
-  companies,
   projects,
   getCompany,
-  projectsForCompany,
+  type Project,
 } from "./data/portfolio";
 
 type Props = {
@@ -17,83 +16,79 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <div className="px-12 py-12">
-      {activeCompany ? (
-        // Filtered view: just this company's projects, with a header.
-        <section>
-          <header className="mb-8">
+      {/* Header — shows context for the current filter, or none when viewing all */}
+      <header className="mb-10 min-h-[60px]">
+        {activeCompany ? (
+          <>
             <p className="text-[11px] uppercase tracking-widest text-[color:var(--muted)]">
               {activeCompany.role} · {activeCompany.dates}
             </p>
-            <h1 className="mt-2 font-sans text-3xl font-semibold tracking-tight">
+            <h1 className="mt-1 font-sans text-3xl font-semibold tracking-tight">
               {activeCompany.name}
             </h1>
-            {activeCompany.location && (
-              <p className="mt-1 text-[12px] text-[color:var(--muted)]">
-                {activeCompany.location}
-              </p>
-            )}
-          </header>
-          <ProjectGrid items={projectsForCompany(activeCompany.id)} />
-        </section>
-      ) : (
-        // Default view: every company as a section header, projects below.
-        <div className="space-y-14">
-          {companies.map((c) => {
-            const items = projectsForCompany(c.id);
-            if (items.length === 0) return null;
-            return (
-              <section key={c.id}>
-                <header className="mb-5 flex items-baseline justify-between">
-                  <h2 className="font-sans text-[15px] font-semibold tracking-tight">
-                    <Link
-                      href={`/?c=${c.id}`}
-                      className="hover:text-[color:var(--accent)]"
-                    >
-                      {c.name}
-                    </Link>
-                  </h2>
-                  <p className="text-[11px] text-[color:var(--muted)]">
-                    {c.role} · {c.dates}
-                  </p>
-                </header>
-                <ProjectGrid items={items} />
-              </section>
-            );
-          })}
-        </div>
-      )}
+          </>
+        ) : (
+          <p className="text-[11px] uppercase tracking-widest text-[color:var(--muted)]">
+            All work
+          </p>
+        )}
+      </header>
+
+      {/* One continuous grid of every project. Tiles outside the active filter
+          dim back; click any tile (dim or not) to open its case study. */}
+      <ul className="grid grid-cols-3 gap-x-6 gap-y-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+        {projects.map((p) => (
+          <ProjectTile
+            key={p.slug}
+            project={p}
+            dimmed={
+              activeCompanyId !== null && p.companyId !== activeCompanyId
+            }
+          />
+        ))}
+      </ul>
     </div>
   );
 }
 
-import type { Project } from "./data/portfolio";
-
-function ProjectGrid({ items }: { items: Project[] }) {
+function ProjectTile({
+  project,
+  dimmed,
+}: {
+  project: Project;
+  dimmed: boolean;
+}) {
   return (
-    <ul className="grid grid-cols-3 gap-x-6 gap-y-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
-      {items.map((p) => (
-        <li key={p.slug}>
-          <Link
-            href={`/projects/${p.slug}`}
-            scroll={false}
-            className="group block focus:outline-none"
-            aria-label={p.title}
-          >
-            <div className="relative aspect-square w-full overflow-hidden rounded-sm transition-transform duration-200 group-hover:-translate-y-1">
-              <div
-                className="absolute inset-0"
-                style={{ background: p.cover.background }}
-              />
-              <span className="absolute inset-0 flex items-end justify-start p-3 text-[11px] tracking-tight text-white/95 mix-blend-screen">
-                {p.cover.label}
-              </span>
-            </div>
-            <div className="mt-2 h-4 text-center text-[11px] text-[color:var(--foreground)] opacity-0 transition-opacity duration-150 group-hover:opacity-100">
-              {p.title}
-            </div>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <li>
+      <Link
+        href={`/projects/${project.slug}`}
+        scroll={false}
+        className="group block focus:outline-none"
+        aria-label={project.title}
+      >
+        <div
+          className={`relative aspect-square w-full overflow-hidden rounded-sm transition-all duration-300 group-hover:-translate-y-1 ${
+            dimmed ? "opacity-20 saturate-50" : "opacity-100"
+          }`}
+        >
+          <div
+            className="absolute inset-0"
+            style={{ background: project.cover.background }}
+          />
+          <span className="absolute inset-0 flex items-end justify-start p-3 text-[11px] tracking-tight text-white/95 mix-blend-screen">
+            {project.cover.label}
+          </span>
+        </div>
+        <div
+          className={`mt-2 h-4 text-center text-[11px] text-[color:var(--foreground)] transition-opacity duration-150 ${
+            dimmed
+              ? "opacity-0"
+              : "opacity-0 group-hover:opacity-100"
+          }`}
+        >
+          {project.title}
+        </div>
+      </Link>
+    </li>
   );
 }
