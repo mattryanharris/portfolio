@@ -75,25 +75,28 @@ function ProjectTile({
           }`}
         >
           {project.cover.image ? (
-            // Image fills its cell; the breathing room is baked into the
-            // PNG itself (transparent padding around the product), matching
-            // how supply.openai.com handles product photos.
-            <Image
-              src={project.cover.image}
-              alt={project.title}
-              fill
-              sizes="(max-width: 640px) 25vw, (max-width: 1024px) 16vw, 12vw"
-              className="object-contain"
-            />
+            // Image scales to ~55% of the cell — matches the scale of
+            // supply.openai.com's product photos (which have built-in
+            // transparent padding inside the PNGs themselves).
+            <div className="relative h-[55%] w-[55%]">
+              <Image
+                src={project.cover.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 640px) 15vw, (max-width: 1024px) 10vw, 7vw"
+                className="object-contain"
+              />
+            </div>
           ) : (
-            // Color tile: solid block filling the cell with a tiny mono
-            // cover label in the corner.
-            <div className="relative h-full w-full overflow-hidden rounded-sm">
+            // Color tile: a 55% × 55% solid block centered in the cell with
+            // a tiny mono cover label in the corner. Matches the visual
+            // weight of a product photo.
+            <div className="relative h-[55%] w-[55%] overflow-hidden rounded-sm">
               <div
                 className="absolute inset-0"
                 style={{ background: project.cover.background }}
               />
-              <span className="absolute inset-0 flex items-end justify-start p-2 text-[10px] tracking-tight text-white/95 mix-blend-screen">
+              <span className="absolute inset-0 flex items-end justify-start p-1.5 text-[9px] tracking-tight text-white/95 mix-blend-screen">
                 {project.cover.label}
               </span>
             </div>
