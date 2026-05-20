@@ -17,6 +17,12 @@ function Mono({ children }: { children: ReactNode }) {
   );
 }
 
+function H3({ children }: { children: ReactNode }) {
+  return (
+    <h3 className="mt-8 mb-3 text-lg font-medium tracking-tight">{children}</h3>
+  );
+}
+
 function Bullets({ items }: { items: string[] }) {
   return (
     <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
@@ -53,45 +59,74 @@ export const summaries: Record<string, ReactNode> = {
   "message-matt": (
     <>
       <P>
-        a few weekends ago i got obsessed with the idea of those ticket
-        printers from the bear, the ones spitting out orders, and thought
-        &ldquo;wow, that sounds awesome and not chaotic or stressful, i want
-        that for my desk.&rdquo; so i went on facebook marketplace and bought
-        a used Epson TM-m30II.
-      </P>
-      <P>it was easy to set up, right? WRONG.</P>
-      <P>
-        it took firmware updates, epson network utilities from 2009, default
-        passwords that turned out to be the printer&rsquo;s serial number, and
-        more googling than i&rsquo;d like to admit. the breakthrough was
-        finding a thing called <em>Server Direct Print</em> buried in the
-        manual: instead of an app pushing jobs <em>to</em> the printer, the
-        printer reaches out to my server every few seconds and asks{" "}
-        <em>got anything for me?</em> if there&rsquo;s a message waiting it
-        prints it; if not, it goes back to sleep. backwards from how printers
-        usually work, but it meant i could host the whole thing on the
-        internet instead of fighting drivers.
+        A weekend project that got out of hand. I&rsquo;d been watching{" "}
+        <em>The Bear</em> and got fixated on the kitchen ticket printers —
+        the way orders just appear, physically, as paper. I wanted that
+        energy on my desk. So I went to Facebook Marketplace, bought a used
+        Epson TM-m30II thermal receipt printer, and figured I&rsquo;d wire it
+        up in an afternoon.
       </P>
       <P>
-        the catch: the printer wants the response in a very specific XML
-        dialect Epson calls ePOS-Print, wrapped in tags that have to be cased
-        exactly right or the printer silently ignores them. once that was
-        wired up, a different problem cropped up: every curly quote came out
-        as a <Mono>?</Mono>. turns out thermal printers live in 1995 and only
-        speak old code pages, so the server now strips smart quotes, em
-        dashes, ellipses, and other typography down to ASCII before sending.
+        It took the better part of three days.
       </P>
       <P>
-        now anyone can send notes, fortunes, or random thoughts to it through
-        a tiny web form, and they show up seconds later as little paper
-        telegrams on my desk. there&rsquo;s a fortune teller mode (mystical
-        nonsense on demand), a task ticket mode (kitchen-style chits for
-        chores), and a reading mode that prints exactly one minute of
-        whatever book i&rsquo;m in the middle of and trims it off the source
-        file so the next minute starts where i left off.
+        The printer is from a world of point-of-sale systems, not consumer
+        gadgets. Setup meant firmware updates, Epson network utilities that
+        haven&rsquo;t been redesigned since 2009, and a default Web Config
+        password that turns out to be the printer&rsquo;s serial number
+        (helpfully printed on a sticker on the bottom). The breakthrough came
+        from a manual buried on Epson&rsquo;s support site: a feature called{" "}
+        <strong>Server Direct Print</strong>, which inverts the usual printer
+        model. Instead of an app pushing jobs <em>to</em> the printer, the
+        printer itself reaches out to your server every few seconds and asks
+        if there&rsquo;s anything to print. If yes, the server responds with
+        XML and the printer prints it. If no, the printer goes back to sleep.
       </P>
       <P>
-        it&rsquo;s loud, unnecessary, and somehow perfect.
+        Inverted, but freeing — once I knew that, I could host the whole
+        thing on Vercel and skip drivers entirely.
+      </P>
+
+      <H3>The architecture</H3>
+      <P>
+        A tiny Next.js service holds a queue of pending messages in memory
+        and exposes two endpoints: one for humans (a web form to send a
+        message), and one for the printer to poll. When the printer pings the
+        poll endpoint, the server checks the queue and either returns a
+        well-formed <Mono>PrintRequestInfo</Mono> XML document (Epson&rsquo;s
+        ePOS-Print dialect, with the namespace and casing they require, or
+        the printer silently ignores it) or an empty 200 OK to mean
+        &ldquo;nothing right now.&rdquo; After printing, the printer POSTs
+        back a result so the server can mark the job done.
+      </P>
+      <P>
+        One surprise: the printer is functionally illiterate when it comes to
+        modern typography. The first time I sent a message with curly quotes,
+        every apostrophe came out as a <Mono>?</Mono>. Thermal printers
+        speak code pages from the 1990s — CP437 by default — so the service
+        now normalizes the text before sending: smart quotes become straight
+        quotes, em dashes become hyphens, ellipses become three dots,
+        non-breaking spaces become regular ones. The receipt looks the way it
+        was written.
+      </P>
+
+      <H3>What it does</H3>
+      <Bullets
+        items={[
+          "Telegrams — anyone with the link can send a short note via a public web form; it lands on my desk seconds later as a printed strip with the sender and timestamp.",
+          "Fortune teller — single-tap mystical fortune. Pure novelty; the kind of thing that gets shared at a party.",
+          "Task tickets — a small queue for household chores, printed kitchen-ticket style so they're hard to ignore.",
+          "Reading mode — a Python script that prints exactly one minute of whatever book I'm reading (around 200 words, ending on a sentence boundary), then trims the printed portion from the source file so the next minute picks up cleanly.",
+        ]}
+      />
+
+      <H3>What I learned</H3>
+      <P>
+        Every interesting consumer-grade thing has an industrial cousin that&rsquo;s
+        cheaper, sturdier, and ten times more annoying to set up. The fun of
+        this project was sitting on the wrong side of that trade — making a
+        kitchen workhorse do small, soft, useless things, just because it
+        could.
       </P>
     </>
   ),
