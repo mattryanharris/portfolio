@@ -35,9 +35,11 @@ export default async function Home({ searchParams }: Props) {
         )}
       </header>
 
-      {/* One continuous grid of every project. Tiles outside the active filter
-          dim back; click any tile (dim or not) to open its case study. */}
-      <ul className="grid grid-cols-3 gap-x-6 gap-y-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+      {/* One continuous grid of every project. Mirrors supply.openai.com's
+          shape: 4 → 6 → 8 columns with a tight 4px gap. Breathing room
+          around each tile comes from the inset within the cell, not from
+          the gap between cells. */}
+      <ul className="grid grid-cols-4 gap-x-1 gap-y-8 lg:grid-cols-6 xl:grid-cols-8">
         {projects.map((p) => (
           <ProjectTile
             key={p.slug}
@@ -68,33 +70,34 @@ function ProjectTile({
         aria-label={project.title}
       >
         <div
-          className={`relative aspect-square w-full transition-transform duration-[400ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-2 group-hover:scale-[1.06] group-hover:rotate-[4deg] ${
+          className={`relative flex aspect-square w-full items-center justify-center transition-transform duration-[400ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-1 group-hover:scale-[1.06] group-hover:rotate-[3deg] ${
             dimmed ? "opacity-20 saturate-50" : "opacity-100"
           }`}
         >
-          {/* Inner box is inset ~14% so the content takes ~72% of the cell,
-              matching the supply.openai.com product-on-page scale. */}
-          <div className="absolute inset-[14%] overflow-hidden rounded-sm">
-            {project.cover.image ? (
-              <Image
-                src={project.cover.image}
-                alt={project.title}
-                fill
-                sizes="(max-width: 640px) 25vw, (max-width: 1024px) 16vw, 12vw"
-                className="object-contain"
+          {project.cover.image ? (
+            // Image fills its cell; the breathing room is baked into the
+            // PNG itself (transparent padding around the product), matching
+            // how supply.openai.com handles product photos.
+            <Image
+              src={project.cover.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 640px) 25vw, (max-width: 1024px) 16vw, 12vw"
+              className="object-contain"
+            />
+          ) : (
+            // Color tile: solid block filling the cell with a tiny mono
+            // cover label in the corner.
+            <div className="relative h-full w-full overflow-hidden rounded-sm">
+              <div
+                className="absolute inset-0"
+                style={{ background: project.cover.background }}
               />
-            ) : (
-              <>
-                <div
-                  className="absolute inset-0"
-                  style={{ background: project.cover.background }}
-                />
-                <span className="absolute inset-0 flex items-end justify-start p-2 text-[10px] tracking-tight text-white/95 mix-blend-screen">
-                  {project.cover.label}
-                </span>
-              </>
-            )}
-          </div>
+              <span className="absolute inset-0 flex items-end justify-start p-2 text-[10px] tracking-tight text-white/95 mix-blend-screen">
+                {project.cover.label}
+              </span>
+            </div>
+          )}
         </div>
         <div
           className={`mt-2 h-4 text-center text-[11px] text-[color:var(--foreground)] transition-opacity duration-150 ${
