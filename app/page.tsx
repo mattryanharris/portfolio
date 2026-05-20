@@ -70,8 +70,8 @@ function ProjectTile({
         aria-label={project.title}
       >
         <div
-          className={`relative flex aspect-square w-full items-center justify-center transition-transform duration-[400ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-1 group-hover:scale-[1.06] group-hover:rotate-[3deg] ${
-            dimmed ? "opacity-20 saturate-50" : "opacity-100"
+          className={`relative flex aspect-square w-full items-center justify-center [transition:transform_400ms_cubic-bezier(0.34,1.56,0.64,1),opacity_500ms_ease-out,filter_500ms_ease-out] group-hover:-translate-y-1 group-hover:scale-[1.06] group-hover:rotate-[3deg] ${
+            dimmed ? "opacity-20 saturate-50" : "opacity-100 saturate-100"
           }`}
         >
           {project.cover.image ? (
