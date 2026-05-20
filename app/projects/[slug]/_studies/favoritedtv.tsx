@@ -26,14 +26,6 @@ function Quote({ children }: { children: ReactNode }) {
   );
 }
 
-function Code({ children }: { children: ReactNode }) {
-  return (
-    <pre className="my-6 overflow-x-auto rounded-md bg-[#f6f7f8] p-4 font-mono text-xs leading-relaxed text-[#222]">
-      {children}
-    </pre>
-  );
-}
-
 function Mono({ children }: { children: ReactNode }) {
   return (
     <code className="rounded bg-[#f6f7f8] px-1.5 py-0.5 font-mono text-[0.9em]">
@@ -75,16 +67,18 @@ export default function FavoritedTVStudy() {
       <P>
         For a long time, the office TVs ran on a system that's almost charmingly
         analog by 2026 standards. Every week, our operations manager{" "}
-        <strong>MaiLinh</strong> would open Adobe Premiere, hand-update the
-        leaderboard scores, render a fresh video, upload it to a Plex server,
-        and then walk through the office turning the playback on for each Apple
-        TV individually.
+        <strong>MaiLinh</strong> would open Adobe Premiere and rebuild the
+        whole video — every graphic, every headline, every leaderboard frame,
+        every transition — hand-update the data inside each one, render the
+        full video, upload it to a Plex server, and then walk through the
+        office turning the playback on for each Apple TV individually.
       </P>
       <P>
         Daily updates weren't even an option. The render-and-deploy loop was
-        too expensive. Weekly updates were always a little late. And anything{" "}
-        <em>dynamic</em> — anything that needed to reflect what was happening
-        right now — was off the table.
+        too expensive — one update meant re-touching every graphic in the
+        video, not just the numbers. Weekly updates were always a little late.
+        And anything <em>dynamic</em> — anything that needed to reflect what
+        was happening right now — was off the table entirely.
       </P>
       <Quote>
         From the Slack note I sent the team after the first ship:
@@ -197,107 +191,18 @@ export default function FavoritedTVStudy() {
 
       <H3>Day 4 — the live wall</H3>
       <P>
-        See the deep-dive below. This is the chapter I spent the most time
-        documenting because it's the most technically interesting — but it's
-        also the chapter that's only possible because Days 1–3 already turned
-        the TV into something you could ship code to.
-      </P>
-
-      <H2>The technical deep-dive: a live wall of streams</H2>
-      <P>
-        The headline win of the &ldquo;TV-as-app&rdquo; rewrite isn't faster
-        updates — it's features that were previously impossible. Specifically:
-        a 3×2 grid of Favorited creators streaming live, muted, sitting in
-        your peripheral vision so the team can glance over and see what's
-        happening on the platform.
+        A 3×2 grid of Favorited creators streaming live, muted, on the wall —
+        so the team can glance over and see what's happening on the platform
+        in real time. Each tile shows the creator's avatar, handle, viewer
+        count, stream title, and a ticking &ldquo;LIVE 2h 14m&rdquo; duration.
+        Stalled streams self-heal by swapping in from a backup pool, and the
+        slide pre-mounts five seconds before becoming visible so the streams
+        are already playing by the time you see them.
       </P>
       <Quote>
-        You can't render that in Premiere. You can render any number of frames,
-        but you can't render <em>now</em>.
+        You can't render that in Premiere. You can render any number of
+        frames, but you can't render <em>now</em>.
       </Quote>
-
-      <H3>The detective work</H3>
-      <P>
-        Favorited's streaming API isn't documented externally. I had an iOS
-        repo (Swift, LiveKit-based), a Flutter repo (Agora-based), and one
-        long-lived auth JWT. So the first hour was reading source:
-      </P>
-      <ol className="my-4 list-decimal space-y-2 pl-6 leading-7">
-        <li>
-          The iOS repo's <Mono>LivestreamRoom</Mono> protocol has both LiveKit
-          and Agora backends. The Agora token endpoint was stubbed with a
-          TODO. Production runs on LiveKit.
-        </li>
-        <li>
-          The Flutter repo's generated <Mono>pb.dart</Mono> files exposed the
-          real gRPC service:{" "}
-          <Mono>com.favorited.grpc.LivestreamTokenService</Mono>. No{" "}
-          <Mono>.proto</Mono> source was in the repo, so I synthesized one
-          from the descriptor JSON.
-        </li>
-        <li>
-          I verified the whole contract with <Mono>curl</Mono> and{" "}
-          <Mono>grpcurl</Mono> against production before writing a line of app
-          code. A real LiveKit subscriber token came back with the claims I
-          expected. Greenlit.
-        </li>
-      </ol>
-      <P>
-        One surprise: the obvious <Mono>livestreams</Mono> GraphQL query
-        returned 100% LKRTC streams. The Flutter app's watch screen actually
-        uses a <em>different</em> query — <Mono>discoverLivestreams</Mono> —
-        which surfaces a different pool that includes Agora streams. &ldquo;The
-        endpoint you'd guess is the wrong one&rdquo; is exactly the kind of
-        thing that eats hours when you're working from indirect signals.
-      </P>
-
-      <H3>Architecture</H3>
-      <Code>{`Apple TV  ──HTTPS──▶  Vercel admin  ──HTTPS──▶  Favorited GraphQL (discoverLivestreams)
-                                  ──gRPC──▶   Favorited LivestreamTokenService
-                  ◀──────────────  JSON: 12 streams with embedded LiveKit tokens
-Apple TV  ──WSS───────────────────────────▶  LiveKit cloud (one Room per tile)`}</Code>
-      <P>
-        The Vercel admin (Next.js with <Mono>@grpc/grpc-js</Mono>) is the only
-        place the auth JWT lives — it never reaches the TV. It returns 12
-        streams per request: 6 to display, 6 as swap backups, all with
-        pre-minted tokens. The TV connects to LiveKit directly, one{" "}
-        <Mono>Room</Mono> per tile.
-      </P>
-
-      <H3>The polish ladder</H3>
-      <P>
-        The interesting half of the live-wall hours was iterating on UX after
-        the wiring worked. Each step fixes a millisecond-class quality issue:
-      </P>
-      <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
-        <li>
-          <strong>Audio off</strong> via a tiny <Mono>RoomDelegate</Mono> —
-          LiveKit v2 doesn't expose a &ldquo;subscribe video only&rdquo; room
-          option, so I drop each audio subscription as it's auto-subscribed.
-        </li>
-        <li>
-          <strong>Tile chrome</strong> — avatar, handle, viewer count,
-          truncated title, ticking &ldquo;🔴 LIVE 2h 14m&rdquo; duration.
-        </li>
-        <li>
-          <strong>Self-healing</strong> — if a tile has no video within 5
-          seconds, the grid swaps it for one of the 6 backup streams.
-        </li>
-        <li>
-          <strong>Two-layer preload</strong> — the slideshow's existing{" "}
-          <Mono>preloadUpcoming()</Mono> warms a stream cache during the
-          previous slide; then the slide itself is mounted <em>invisibly</em>{" "}
-          5 seconds before the visible fade, so LiveKit rooms finish
-          connecting in the dark.
-        </li>
-      </ul>
-      <P>
-        That last one matters most. The slideshow's timer used to be{" "}
-        <Mono>sleep(duration) → fade</Mono>. I split it into{" "}
-        <Mono>sleep(duration − 5s) → stage invisibly → sleep(5s) → fade</Mono>.
-        By the time the live wall becomes visible, the rooms are already
-        showing video. There's no loading state, ever.
-      </P>
 
       <H2>Before / after</H2>
       <div className="my-8 overflow-x-auto">
