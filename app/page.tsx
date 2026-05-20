@@ -54,14 +54,14 @@ export default async function Home({ searchParams }: Props) {
   );
 }
 
-/** Deterministic angle in [-9°, -4°] ∪ [4°, 9°] for each tile, so each
+/** Deterministic angle in [-7°, -3°] ∪ [3°, 7°] for each tile, so each
  *  one rotates a different amount and direction on hover — keeps the
  *  catalog feeling alive instead of every tile tilting the same way. */
 function bounceAngle(slug: string): string {
   let h = 0;
   for (const c of slug) h = (h * 31 + c.charCodeAt(0)) | 0;
   const sign = h & 1 ? 1 : -1;
-  const mag = 4 + (Math.abs(h >> 1) % 6); // 4..9
+  const mag = 3 + (Math.abs(h >> 1) % 5); // 3..7
   return `${sign * mag}deg`;
 }
 
@@ -82,8 +82,8 @@ function ProjectTile({
       >
         <div
           style={{ "--bounce-rotate": bounceAngle(project.slug) } as React.CSSProperties}
-          className={`relative flex aspect-square w-full items-center justify-center [transition:transform_450ms_cubic-bezier(0.34,1.8,0.5,1),opacity_500ms_ease-out,filter_500ms_ease-out] group-hover:-translate-y-2 group-hover:scale-[1.1] group-hover:rotate-[var(--bounce-rotate)] ${
-            dimmed ? "opacity-20 saturate-50" : "opacity-100 saturate-100"
+          className={`relative flex aspect-square w-full items-center justify-center will-change-transform [transition:transform_350ms_cubic-bezier(0.34,1.45,0.64,1),opacity_400ms_ease-out] group-hover:-translate-y-1.5 group-hover:scale-[1.07] group-hover:rotate-[var(--bounce-rotate)] ${
+            dimmed ? "opacity-25" : "opacity-100"
           }`}
         >
           {project.cover.image ? (
