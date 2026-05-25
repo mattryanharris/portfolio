@@ -127,6 +127,46 @@ function Events() {
   );
 }
 
+/** Discipline breakdown — what Matt personally owned on this project. */
+function Roles() {
+  const roles: [string, string][] = [
+    [
+      "Creative direction",
+      "Created Rex end to end — the character, the premise of a ghost who doesn’t know he’s dead, the lore universe, and the season-long story that answered why ghosts were on the app. Wrote every line of dialogue.",
+    ],
+    [
+      "Product",
+      "Shaped the CEO’s ghost-gun instinct into a six-week serialized event: the milestone-reward structure, the lore-unlock loop, and the capture/release finale — all reusing the platform’s existing gifting mechanic.",
+    ],
+    [
+      "Art direction",
+      "Directed the visual language with the animation and CG teams — the eighties, spare-parts ghost-gun aesthetic that made Rex a TV repairman, plus the twelve-pose character library.",
+    ],
+    [
+      "Motion direction",
+      "Designed how Rex performs: the pose-swap-per-line system in Rive and the finale’s hinge-and-tail reveal, turning a static character into a data-driven actor.",
+    ],
+    [
+      "Engineering",
+      "Wrote the Braze code — the HTML/JS that binds each line and pose into the Rive view-model at runtime and fires the seen / skip / complete analytics events.",
+    ],
+  ];
+  return (
+    <div className="my-8 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2">
+      {roles.map(([title, body]) => (
+        <div key={title} className="bg-white px-5 py-5">
+          <div className="font-mono text-[11px] font-semibold uppercase tracking-widest text-amber-600">
+            {title}
+          </div>
+          <div className="mt-1.5 text-[13.5px] leading-6 text-[#3a2e22]">
+            {body}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /** The finale capture/release split — real Braze event totals. */
 function SplitBar() {
   return (
@@ -170,7 +210,9 @@ export default function RexStudy() {
           <dt className="font-mono text-xs uppercase tracking-widest text-[color:var(--muted)]">
             Role
           </dt>
-          <dd className="mt-1">Concept, script, and build — solo</dd>
+          <dd className="mt-1">
+            Solo — product, creative / art / motion direction, and code
+          </dd>
         </div>
         <div>
           <dt className="font-mono text-xs uppercase tracking-widest text-[color:var(--muted)]">
@@ -183,7 +225,7 @@ export default function RexStudy() {
             Medium
           </dt>
           <dd className="mt-1 font-mono text-xs text-[color:var(--muted)]">
-            Rive · Braze in-app messaging · CRM · zero engineering
+            Rive · Braze in-app messaging · CRM · no engineering team
           </dd>
         </div>
       </dl>
@@ -195,6 +237,13 @@ export default function RexStudy() {
         the app runs a seasonal event. This is the story of the one that got a
         soul.
       </P>
+
+      <H2>What I owned</H2>
+      <P>
+        A solo build across five disciplines — from the first concept to the
+        production code that shipped it.
+      </P>
+      <Roles />
 
       <H2>The brief: &ldquo;I want a ghost gun&rdquo;</H2>
       <P>
