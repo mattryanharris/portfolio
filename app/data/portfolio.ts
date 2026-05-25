@@ -267,7 +267,11 @@ export const projects: Project[] = [
       "Helped launch Shortcuts as a default app on iOS 13. Shipped Shortcuts in the global Gallery.",
     companyId: "apple",
     year: "2019",
-    cover: { background: "#111111", label: "apple.shortcuts" },
+    cover: {
+      background: "#111111",
+      label: "apple.shortcuts",
+      image: "/projects/shortcuts-gallery.png",
+    },
     status: "summary",
   },
 
