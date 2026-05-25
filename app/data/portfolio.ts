@@ -312,7 +312,11 @@ export const projects: Project[] = [
       "Ported a closed-loop simulation from C#/.NET on Windows to C++/Qt on Linux — including real-time decryption of radio signals into usable data.",
     companyId: "navair",
     year: "2017",
-    cover: { background: "#0c4a6e", label: "navair.crosswire" },
+    cover: {
+      background: "#0c4a6e",
+      label: "navair.crosswire",
+      image: "/projects/crosswire.png",
+    },
     status: "summary",
   },
 
