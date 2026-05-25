@@ -417,14 +417,15 @@ export const summaries: Record<string, ReactNode> = {
   "frank-pillow": (
     <>
       <P>
-        One of my favorite collabs from the Frank era: a custom{" "}
-        <strong>CrankThatFrank</strong> pillow made with{" "}
+        One of my favorite collabs from the Frank era: we took the channel&rsquo;s{" "}
+        <strong>three-eyed cat</strong> mascot — the same icon anchoring the
+        merch line — and made it plush, partnering with{" "}
         <strong>Throwboy</strong>, the studio behind the original emoji pillows.
       </P>
       <P>
-        It took a piece of the channel and turned it into a real, physical
-        product on a fan&rsquo;s couch — a designer-pillow collab built around
-        an internet comedian and sold straight to his audience.
+        It turned a piece of channel iconography into a real, physical product
+        on a fan&rsquo;s couch — a designer-pillow collab built around an
+        internet comedian and sold straight to his audience.
       </P>
     </>
   ),

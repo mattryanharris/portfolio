@@ -321,7 +321,11 @@ export const projects: Project[] = [
       "A custom CrankThatFrank pillow with Throwboy — the studio behind the original emoji pillows.",
     companyId: "youtube",
     year: "2017",
-    cover: { background: "#f87171", label: "frank.pillow" },
+    cover: {
+      background: "#5e8b9e",
+      label: "frank.pillow",
+      image: "/projects/frank-pillow.png",
+    },
     status: "summary",
   },
   {
