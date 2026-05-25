@@ -367,6 +367,40 @@ export const summaries: Record<string, ReactNode> = {
     </>
   ),
 
+  // ───────── NAVAIR ─────────
+  "closed-loop": (
+    <>
+      <P>
+        A ten-week NREIP internship at Naval Air Weapons Station China Lake, in
+        the Michelson Laboratory&rsquo;s{" "}
+        <strong>Integrated Battlespace Arena</strong> — NAVAIR&rsquo;s
+        high-fidelity, closed-loop simulation environment. What the simulation
+        actually modeled isn&rsquo;t something I can get into, but the
+        engineering problem I was handed is fair game — and it was a good one.
+      </P>
+      <P>
+        The job: take a set of <strong>C#/.NET</strong> libraries built for
+        Windows and re-implement them in <strong>C++ (Qt)</strong> so the system
+        would run on <strong>Linux</strong> as well. In the pipeline, data
+        originated on a Windows machine and had to be handed off and consumed by
+        a Linux machine downstream — so the software needed to behave
+        identically on both ends. Cross-platform parity was the whole point.
+      </P>
+      <P>
+        Part of it handled <strong>encrypted radio signals</strong>: take in the
+        encrypted stream, decrypt it, and turn it into readable data the
+        simulation could use in real time.
+      </P>
+      <P>
+        I finished my slice over the ten weeks and wrote the documentation and
+        onboarding materials for whoever inherited the project. I came in strong
+        on C++ but new to C#, so much of the work was reading unfamiliar code
+        closely enough to reimplement it faithfully — a crash course in porting
+        across two languages and two operating systems at once.
+      </P>
+    </>
+  ),
+
   // ───────── YouTube ─────────
   crankthatfrank: (
     <>

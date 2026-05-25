@@ -72,6 +72,13 @@ export const companies: Company[] = [
     location: "Corona, CA",
   },
   {
+    id: "navair",
+    name: "NAVAIR",
+    role: "Software Engineer, Intern (NREIP)",
+    dates: "Summer 2017",
+    location: "China Lake, CA",
+  },
+  {
     id: "youtube",
     name: "YouTube",
     role: "Talent Manager",
@@ -294,6 +301,18 @@ export const projects: Project[] = [
     companyId: "navsea",
     year: "2020",
     cover: { background: "#172554", label: "navsea.emeds" },
+    status: "summary",
+  },
+
+  // ───────── NAVAIR ─────────
+  {
+    slug: "closed-loop",
+    title: "Closed Loop",
+    tagline:
+      "Ported a closed-loop simulation from C#/.NET on Windows to C++/Qt on Linux — including real-time decryption of radio signals into usable data.",
+    companyId: "navair",
+    year: "2017",
+    cover: { background: "#0c4a6e", label: "navair.closedloop" },
     status: "summary",
   },
 
