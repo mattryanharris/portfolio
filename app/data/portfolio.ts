@@ -301,7 +301,11 @@ export const projects: Project[] = [
       "Managed a YouTube comedian from a few thousand subscribers to over a million — production, thumbnails, media, and the deals.",
     companyId: "youtube",
     year: "2018",
-    cover: { background: "#ef4444", label: "crankthatfrank" },
+    cover: {
+      background: "#ef4444",
+      label: "crankthatfrank",
+      image: "/projects/crankthatfrank.png",
+    },
     status: "summary",
   },
   {
