@@ -396,13 +396,17 @@ export const summaries: Record<string, ReactNode> = {
         drops, and merchandising — peaking at up to{" "}
         <strong>$40,000 a month</strong> and worn by thousands of fans.
       </P>
-      <P>It ran as a series of themed drops:</P>
+      <P>
+        The line leaned all the way into Frank&rsquo;s deadpan, &ldquo;dead
+        inside&rdquo; alt-comedy brand — across tees, long sleeves, hoodies,
+        sweatshirts, and hats:
+      </P>
       <Bullets
         items={[
-          "The three-eyed cat — the channel’s mascot logo, turned into the flagship line.",
-          "A Halloween “old Hollywood” series built around the cat — one of the best sellers.",
-          "Cartoony designs riffing on Frank’s running “don’t eat soap” inside joke.",
-          "Holiday drops — an ugly-Christmas sweater and socks.",
+          "The three-eyed cat — the channel’s mascot, anchoring the whole line.",
+          "Goth/emo staples that matched Frank’s humor: the American Goth Collection, Dead Inside apparel, a Repressed Emo sweatshirt, and a Skeleton tee.",
+          "Joke drops like “Fam Friendly Alt Content” and the “Yee” tee.",
+          "Seasonal runs — a Halloween “old Hollywood” cat series, holiday knits (an ugly-Christmas sweater and socks), and designs riffing on the “don’t eat soap” bit.",
         ]}
       />
       <P>
