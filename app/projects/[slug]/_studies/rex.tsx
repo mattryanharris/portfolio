@@ -153,16 +153,24 @@ function Roles() {
   ];
   return (
     <div className="my-8 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2">
-      {roles.map(([title, body]) => (
-        <div key={title} className="bg-white px-5 py-5">
-          <div className="font-mono text-[11px] font-semibold uppercase tracking-widest text-amber-600">
-            {title}
+      {roles.map(([title, body], i) => {
+        // Last card spans both columns when the count is odd, so there's
+        // no dangling empty cell.
+        const spanFull = i === roles.length - 1 && roles.length % 2 === 1;
+        return (
+          <div
+            key={title}
+            className={`bg-white px-5 py-5${spanFull ? " sm:col-span-2" : ""}`}
+          >
+            <div className="font-mono text-[11px] font-semibold uppercase tracking-widest text-amber-600">
+              {title}
+            </div>
+            <div className="mt-1.5 text-[13.5px] leading-6 text-[#3a2e22]">
+              {body}
+            </div>
           </div>
-          <div className="mt-1.5 text-[13.5px] leading-6 text-[#3a2e22]">
-            {body}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
