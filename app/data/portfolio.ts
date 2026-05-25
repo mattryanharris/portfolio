@@ -97,6 +97,20 @@ export const projects: Project[] = [
     status: "case-study",
   },
   {
+    slug: "rex-radcliffe",
+    title: "Rex Radcliffe",
+    tagline:
+      "A serialized ghost-hunting mystery for Spooky Season — character, script, and a reusable Rive + Braze rig. Zero engineering.",
+    companyId: "favorited",
+    year: "2025",
+    cover: {
+      background: "#1a1208",
+      label: "favorited.rex",
+      image: "/projects/rex.png",
+    },
+    status: "case-study",
+  },
+  {
     slug: "favorited-games",
     title: "Favorited Chat Games",
     tagline:

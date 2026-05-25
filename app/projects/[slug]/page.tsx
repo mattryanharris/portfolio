@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { projects, getProject, getCompany } from "../../data/portfolio";
 import { summaries } from "../../data/summaries";
 import FavoritedTVStudy from "./_studies/favoritedtv";
+import RexStudy from "./_studies/rex";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -56,6 +57,8 @@ export default async function ProjectPage({
         <div className="text-[15px]">
           {project.slug === "favoritedtv" ? (
             <FavoritedTVStudy />
+          ) : project.slug === "rex-radcliffe" ? (
+            <RexStudy />
           ) : (
             summaries[project.slug] ?? (
               <p className="leading-7 text-[#222]">{project.tagline}</p>
