@@ -246,13 +246,6 @@ export default function RexStudy() {
         soul.
       </P>
 
-      <H2>What I owned</H2>
-      <P>
-        A solo build across five disciplines — from the first concept to the
-        production code that shipped it.
-      </P>
-      <Roles />
-
       <H2>The brief: &ldquo;I want a ghost gun&rdquo;</H2>
       <P>
         The previous year&rsquo;s spooky season was bare bones — a few seasonal
@@ -412,6 +405,13 @@ export default function RexStudy() {
         choice was recorded for a future callback. It&rsquo;s the most human
         result in the whole project: nobody was indifferent.
       </P>
+
+      <H2>What I owned</H2>
+      <P>
+        Everything above — the character, the story, the pose rig, the Braze
+        code, the finale — was one person across five disciplines.
+      </P>
+      <Roles />
 
       <H2>Why it mattered</H2>
       <P>
