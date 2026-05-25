@@ -306,13 +306,13 @@ export const projects: Project[] = [
 
   // ───────── NAVAIR ─────────
   {
-    slug: "closed-loop",
-    title: "Closed Loop",
+    slug: "crosswire",
+    title: "Crosswire",
     tagline:
       "Ported a closed-loop simulation from C#/.NET on Windows to C++/Qt on Linux — including real-time decryption of radio signals into usable data.",
     companyId: "navair",
     year: "2017",
-    cover: { background: "#0c4a6e", label: "navair.closedloop" },
+    cover: { background: "#0c4a6e", label: "navair.crosswire" },
     status: "summary",
   },
 

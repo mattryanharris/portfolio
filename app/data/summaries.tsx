@@ -368,7 +368,7 @@ export const summaries: Record<string, ReactNode> = {
   ),
 
   // ───────── NAVAIR ─────────
-  "closed-loop": (
+  crosswire: (
     <>
       <P>
         A ten-week NREIP internship at Naval Air Weapons Station China Lake, in
