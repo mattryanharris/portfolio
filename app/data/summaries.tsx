@@ -368,22 +368,80 @@ export const summaries: Record<string, ReactNode> = {
   ),
 
   // ───────── YouTube ─────────
-  "talent-management": (
+  crankthatfrank: (
     <>
       <P>
-        Before software became the day job, I spent three years as a hands-on
-        talent manager. Production, thumbnail design, ad-campaign negotiation,
-        on-site representation, and media interviews — the whole stack for a
-        creator.
+        Before software became the day job, I spent three years managing{" "}
+        <strong>CrankThatFrank</strong> (Frank Gioia), a YouTube comedian. It
+        was the whole stack for a creator: video production, thumbnail design,
+        ad-campaign negotiation, on-site representation, and media-interview
+        mediation.
       </P>
+      <P>
+        Over that run we scaled the channel from a few thousand subscribers to{" "}
+        <strong>over a million</strong>, and I secured platform verification
+        across Twitter, Instagram, and YouTube. Looking back, this is where the
+        product instinct started — obsessing over what makes someone click a
+        thumbnail, testing titles, and reading an audience is the same muscle I
+        use building products now.
+      </P>
+    </>
+  ),
+
+  "frank-merch": (
+    <>
+      <P>
+        Frank&rsquo;s merch became a business of its own. I built the line on{" "}
+        <strong>Represent</strong> and ran it end to end — concept, design,
+        drops, and merchandising — peaking at up to{" "}
+        <strong>$40,000 a month</strong> and worn by thousands of fans.
+      </P>
+      <P>It ran as a series of themed drops:</P>
       <Bullets
         items={[
-          "Developed licensed merchandise with Hot Topic, featured in retail stores across North America.",
-          "Scaled creator channels from a few thousand to over a million subscribers.",
-          "Negotiated multi-brand sponsorships across fashion, gaming, and entertainment.",
-          "Secured platform verification (Twitter / Instagram / YouTube) for talent.",
+          "The three-eyed cat — the channel’s mascot logo, turned into the flagship line.",
+          "A Halloween “old Hollywood” series built around the cat — one of the best sellers.",
+          "Cartoony designs riffing on Frank’s running “don’t eat soap” inside joke.",
+          "Holiday drops — an ugly-Christmas sweater and socks.",
         ]}
       />
+      <P>
+        The line did well enough to cross into retail: I negotiated a{" "}
+        <strong>Hot Topic</strong> deal that put Frank&rsquo;s merch on shelves
+        in stores across North America — from a YouTube channel to a wholesale
+        retail product.
+      </P>
+    </>
+  ),
+
+  "frank-pillow": (
+    <>
+      <P>
+        One of my favorite collabs from the Frank era: a custom{" "}
+        <strong>CrankThatFrank</strong> pillow made with{" "}
+        <strong>Throwboy</strong>, the studio behind the original emoji pillows.
+      </P>
+      <P>
+        It took a piece of the channel and turned it into a real, physical
+        product on a fan&rsquo;s couch — a designer-pillow collab built around
+        an internet comedian and sold straight to his audience.
+      </P>
+    </>
+  ),
+
+  "frank-brand-deals": (
+    <>
+      <P>
+        Alongside the channel and the merch, I ran the partnerships —
+        negotiating <strong>multi-brand sponsorships</strong> across fashion,
+        gaming, and entertainment, and keeping recurring monthly revenue
+        flowing through campaigns and audience-growth deals.
+      </P>
+      <P>
+        The job was matching the right brand to the right audience moment, so a
+        sponsorship felt native to the channel instead of bolted on — the same
+        instinct behind a good product partnership.
+      </P>
     </>
   ),
 };

@@ -295,13 +295,43 @@ export const projects: Project[] = [
 
   // ───────── YouTube ─────────
   {
-    slug: "talent-management",
-    title: "Talent Management",
+    slug: "crankthatfrank",
+    title: "CrankThatFrank",
     tagline:
-      "Scaled creator channels from thousands to over a million subscribers. Hot Topic merch in retail across NA.",
+      "Managed a YouTube comedian from a few thousand subscribers to over a million — production, thumbnails, media, and the deals.",
     companyId: "youtube",
     year: "2018",
-    cover: { background: "#ef4444", label: "youtube.talent" },
+    cover: { background: "#ef4444", label: "crankthatfrank" },
+    status: "summary",
+  },
+  {
+    slug: "frank-merch",
+    title: "Frank Merch",
+    tagline:
+      "Built a creator merch line on Represent doing up to $40K/month — multiple sold-out series, ending in a Hot Topic deal.",
+    companyId: "youtube",
+    year: "2017",
+    cover: { background: "#b91c1c", label: "frank.merch" },
+    status: "summary",
+  },
+  {
+    slug: "frank-pillow",
+    title: "Throwboy Pillow",
+    tagline:
+      "A custom CrankThatFrank pillow with Throwboy — the studio behind the original emoji pillows.",
+    companyId: "youtube",
+    year: "2017",
+    cover: { background: "#f87171", label: "frank.pillow" },
+    status: "summary",
+  },
+  {
+    slug: "frank-brand-deals",
+    title: "Brand Deals",
+    tagline:
+      "Negotiated multi-brand sponsorships across fashion, gaming, and entertainment — matching brands to the right audience moment.",
+    companyId: "youtube",
+    year: "2017",
+    cover: { background: "#7f1d1d", label: "frank.deals" },
     status: "summary",
   },
 ];
