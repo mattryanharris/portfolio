@@ -87,10 +87,10 @@ function ProjectTile({
           }`}
         >
           {project.cover.image ? (
-            // Image scales to ~55% of the cell — matches the scale of
-            // supply.openai.com's product photos (which have built-in
-            // transparent padding inside the PNGs themselves).
-            <div className="relative h-[55%] w-[55%]">
+            // Image scales to ~68% of the cell — a bit larger than the color
+            // blocks, since these product PNGs carry built-in transparent
+            // padding (matching the look of supply.openai.com's photos).
+            <div className="relative h-[68%] w-[68%]">
               <Image
                 src={project.cover.image}
                 alt={project.title}
