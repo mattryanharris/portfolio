@@ -47,7 +47,7 @@ export default function Sidebar() {
           <li>
             <Link
               href="/"
-              className={`block text-[13px] ${
+              className={`block text-[14px] ${
                 active === null
                   ? "text-[color:var(--foreground)]"
                   : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"
@@ -62,7 +62,7 @@ export default function Sidebar() {
               <li key={c.id}>
                 <Link
                   href={`/?c=${c.id}`}
-                  className={`block text-[13px] leading-tight ${
+                  className={`block text-[14px] leading-tight ${
                     isActive
                       ? "text-[color:var(--accent)]"
                       : "hover:text-[color:var(--foreground)]"
@@ -75,10 +75,10 @@ export default function Sidebar() {
                   >
                     {c.name}
                   </span>
-                  <span className="block text-[11px] text-[color:var(--muted)]">
+                  <span className="block text-[12px] text-[color:var(--muted)]">
                     {c.role}
                   </span>
-                  <span className="block text-[11px] text-[color:var(--muted)]">
+                  <span className="block text-[12px] text-[color:var(--muted)]">
                     {c.dates}
                   </span>
                 </Link>
@@ -88,7 +88,7 @@ export default function Sidebar() {
         </ul>
       </div>
 
-      <div className="mt-8 shrink-0 text-[11px] text-[color:var(--muted)]">
+      <div className="mt-8 shrink-0 text-[12px] text-[color:var(--muted)]">
         © {new Date().getFullYear()}
       </div>
     </aside>

@@ -212,7 +212,7 @@ function SplitBar() {
 
 export default function RexStudy() {
   return (
-    <div className="text-[15px]">
+    <div className="text-[17px]">
       <dl className="mb-10 grid grid-cols-1 gap-4 border-b border-[color:var(--border)] pb-10 sm:grid-cols-3">
         <div>
           <dt className="font-mono text-xs uppercase tracking-widest text-[color:var(--muted)]">

@@ -115,7 +115,7 @@ function ProjectTile({
           )}
         </div>
         <div
-          className={`mt-2 h-4 text-center text-[11px] text-[color:var(--foreground)] transition-opacity duration-150 ${
+          className={`mt-2 h-5 text-center text-[13px] text-[color:var(--foreground)] transition-opacity duration-150 ${
             dimmed
               ? "opacity-0"
               : "opacity-0 group-hover:opacity-100"

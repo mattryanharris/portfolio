@@ -85,7 +85,7 @@ export default function ProjectModal({
           </header>
 
           {/* Case study content */}
-          <div className="px-8 py-8">{children}</div>
+          <div className="px-8 py-8 text-[17px]">{children}</div>
         </div>
       </div>
     </div>

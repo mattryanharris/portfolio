@@ -54,7 +54,7 @@ export default async function ProjectPage({
           </Link>
         </header>
 
-        <div className="text-[15px]">
+        <div className="text-[17px]">
           {project.slug === "favoritedtv" ? (
             <FavoritedTVStudy />
           ) : project.slug === "rex-radcliffe" ? (
