@@ -311,7 +311,11 @@ export const projects: Project[] = [
       "Built a creator merch line on Represent doing up to $40K/month — multiple sold-out series, ending in a Hot Topic deal.",
     companyId: "youtube",
     year: "2017",
-    cover: { background: "#b91c1c", label: "frank.merch" },
+    cover: {
+      background: "#161616",
+      label: "frank.merch",
+      image: "/projects/frank-merch.png",
+    },
     status: "summary",
   },
   {
