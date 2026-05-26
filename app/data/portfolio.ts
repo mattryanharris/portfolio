@@ -220,7 +220,11 @@ export const projects: Project[] = [
       "Shipped one of the earliest consumer iOS apps in the cannabis industry.",
     companyId: "rebud",
     year: "2022",
-    cover: { background: "#16a34a", label: "rebud.ios" },
+    cover: {
+      background: "#1e3a30",
+      label: "rebud.ios",
+      image: "/projects/rebud-ios.png",
+    },
     status: "summary",
   },
   {
