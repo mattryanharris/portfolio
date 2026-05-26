@@ -37,7 +37,7 @@ a {
   color: #fff;
 }
 
-/* Used by the project modal — content still scrolls, scrollbar is hidden. */
+/* Used by the project modal: content still scrolls, scrollbar is hidden. */
 .no-scrollbar {
   scrollbar-width: none;          /* Firefox */
   -ms-overflow-style: none;       /* IE/Edge */

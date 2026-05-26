@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Matt Harris — Product, design, engineering",
+  title: "Matt Harris: Product, design, engineering",
   description:
     "Former NASA engineer, now product at favorited. ex-Apple, Disney, Rebud, NAVSEA.",
 };

@@ -107,7 +107,7 @@ export const projects: Project[] = [
     slug: "rex-radcliffe",
     title: "Rex Radcliffe",
     tagline:
-      "A serialized ghost-hunting mystery for Spooky Season — character, script, and a reusable Rive + Braze rig. Zero engineering.",
+      "A serialized ghost-hunting mystery for Spooky Season: character, script, and a reusable Rive + Braze rig. Zero engineering.",
     companyId: "favorited",
     year: "2025",
     cover: {
@@ -155,7 +155,7 @@ export const projects: Project[] = [
     slug: "natgeo-explorer",
     title: "NatGeo Explorer",
     tagline:
-      "Interactive photo game — five guesses to name the country in a NatGeo photo.",
+      "Interactive photo game: five guesses to name the country in a NatGeo photo.",
     companyId: "disney",
     year: "2023",
     cover: { background: "#ffcc00", label: "natgeo.explorer" },
@@ -205,7 +205,7 @@ export const projects: Project[] = [
     slug: "screenplay-to-audio",
     title: "Script-to-Audio",
     tagline:
-      "Prototype for Disney Studio Tech — execs listen to screenplays as narrated performances.",
+      "Prototype for Disney Studio Tech: execs listen to screenplays as narrated performances.",
     companyId: "disney",
     year: "2023",
     cover: { background: "#7c2d12", label: "disney.studio" },
@@ -237,7 +237,7 @@ export const projects: Project[] = [
     slug: "packerkit",
     title: "PackerKit",
     tagline:
-      "Android ops app for warehouse packing — improved packing speed, reduced fulfillment errors.",
+      "Android ops app for warehouse packing, improving packing speed and reducing fulfillment errors.",
     companyId: "rebud",
     year: "2021",
     cover: { background: "#84cc16", label: "rebud.packerkit" },
@@ -287,7 +287,7 @@ export const projects: Project[] = [
     slug: "smsmds-redesign",
     title: "SMSMDS Redesign",
     tagline:
-      "Modernized the Surface Missile System Maintenance Data System portal — UX, iconography, Angular.",
+      "Modernized the Surface Missile System Maintenance Data System portal: UX, iconography, Angular.",
     companyId: "navsea",
     year: "2020",
     cover: { background: "#1e3a8a", label: "navsea.smsmds" },
@@ -297,7 +297,7 @@ export const projects: Project[] = [
     slug: "emeds",
     title: "EMEDS for NATO",
     tagline:
-      "Led the EMEDS application redesign for NATO partners — cross-force interoperability.",
+      "Led the EMEDS application redesign for NATO partners, focused on cross-force interoperability.",
     companyId: "navsea",
     year: "2020",
     cover: { background: "#172554", label: "navsea.emeds" },
@@ -309,7 +309,7 @@ export const projects: Project[] = [
     slug: "crosswire",
     title: "Crosswire",
     tagline:
-      "Ported a closed-loop simulation from C#/.NET on Windows to C++/Qt on Linux — including real-time decryption of Link 16 tactical-data-link messages.",
+      "Ported a closed-loop simulation from C#/.NET on Windows to C++/Qt on Linux, including real-time decryption of Link 16 tactical-data-link messages.",
     companyId: "navair",
     year: "2017",
     cover: {
@@ -325,7 +325,7 @@ export const projects: Project[] = [
     slug: "crankthatfrank",
     title: "CrankThatFrank",
     tagline:
-      "Managed a YouTube comedian from a few thousand subscribers to over a million — production, thumbnails, media, and the deals.",
+      "Managed a YouTube comedian from a few thousand subscribers to over a million: production, thumbnails, media, and the deals.",
     companyId: "youtube",
     year: "2018",
     cover: {
@@ -339,7 +339,7 @@ export const projects: Project[] = [
     slug: "frank-merch",
     title: "Frank Merch",
     tagline:
-      "Built a creator merch line on Represent doing up to $40K/month — multiple sold-out series, ending in a Hot Topic deal.",
+      "Built a creator merch line on Represent doing up to $40K/month, with multiple sold-out series, ending in a Hot Topic deal.",
     companyId: "youtube",
     year: "2017",
     cover: {
@@ -353,7 +353,7 @@ export const projects: Project[] = [
     slug: "frank-pillow",
     title: "Throwboy Pillow",
     tagline:
-      "A custom CrankThatFrank pillow with Throwboy — the studio behind the original emoji pillows.",
+      "A custom CrankThatFrank pillow with Throwboy, the studio behind the original emoji pillows.",
     companyId: "youtube",
     year: "2017",
     cover: {
@@ -367,7 +367,7 @@ export const projects: Project[] = [
     slug: "frank-brand-deals",
     title: "Brand Deals",
     tagline:
-      "Negotiated multi-brand sponsorships across fashion, gaming, and entertainment — matching brands to the right audience moment.",
+      "Negotiated multi-brand sponsorships across fashion, gaming, and entertainment, matching brands to the right audience moment.",
     companyId: "youtube",
     year: "2017",
     cover: { background: "#7f1d1d", label: "frank.deals" },

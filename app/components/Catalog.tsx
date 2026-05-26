@@ -101,7 +101,7 @@ function ToggleButton({
   );
 }
 
-/** Default layout — one row per project: thumbnail, title + company,
+/** Default layout, one row per project: thumbnail, title + company,
  *  tagline, year. */
 function ListView({ activeCompanyId }: { activeCompanyId: string | null }) {
   return (
@@ -162,7 +162,7 @@ function ListView({ activeCompanyId }: { activeCompanyId: string | null }) {
   );
 }
 
-/** Thumbnail grid — mirrors supply.openai.com's shape: 4 → 6 → 8 columns
+/** Thumbnail grid, mirroring supply.openai.com's shape: 4 → 6 → 8 columns
  *  with a tight gap, breathing room from the inset within each cell. */
 function GridView({ activeCompanyId }: { activeCompanyId: string | null }) {
   return (
@@ -212,7 +212,7 @@ function ProjectTile({
           }`}
         >
           {project.cover.image ? (
-            // Image scales to ~68% of the cell — a bit larger than the color
+            // Image scales to ~68% of the cell, a bit larger than the color
             // blocks, since these product PNGs carry built-in transparent
             // padding (matching the look of supply.openai.com's photos).
             <div className="relative h-[68%] w-[68%]">

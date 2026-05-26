@@ -12,7 +12,7 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <div className="px-12 py-12">
-      {/* Header — shows context for the current filter, or none when viewing all */}
+      {/* Header: shows context for the current filter, or none when viewing all */}
       <header className="mb-10 min-h-[60px]">
         {activeCompany ? (
           <>

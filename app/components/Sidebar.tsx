@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { companies } from "../data/portfolio";
 
-/** Left sidebar — Matt Harris brand + contact at top, scrollable list of
+/** Left sidebar: Matt Harris brand + contact at top, scrollable list of
  *  companies with role/dates underneath each, copyright pinned at the
  *  bottom. Clicking a company filters the catalog via `?c=<id>`; clicking
  *  the brand resets to all. */

@@ -43,7 +43,7 @@ export default function FavoritedTVStudy() {
             Role
           </dt>
           <dd className="mt-1">
-            Solo build — engineering, product, design, ops handoff
+            Solo build: engineering, product, design, ops handoff
           </dd>
         </div>
         <div>
@@ -68,17 +68,17 @@ export default function FavoritedTVStudy() {
         For a long time, the office TVs ran on a system that's almost charmingly
         analog by 2026 standards. Every week, our operations manager{" "}
         <strong>MaiLinh</strong> would open Adobe Premiere and rebuild the
-        whole video — every graphic, every headline, every leaderboard frame,
-        every transition — hand-update the data inside each one, render the
+        whole video (every graphic, every headline, every leaderboard frame,
+        every transition), hand-update the data inside each one, render the
         full video, upload it to a Plex server, and then walk through the
         office turning the playback on for each Apple TV individually.
       </P>
       <P>
         Daily updates weren't even an option. The render-and-deploy loop was
-        too expensive — one update meant re-touching every graphic in the
+        too expensive. One update meant re-touching every graphic in the
         video, not just the numbers. Weekly updates were always a little late.
-        And anything <em>dynamic</em> — anything that needed to reflect what
-        was happening right now — was off the table entirely.
+        And anything <em>dynamic</em>, anything that needed to reflect what
+        was happening right now, was off the table entirely.
       </P>
       <Quote>
         From the Slack note I sent the team after the first ship:
@@ -94,26 +94,26 @@ export default function FavoritedTVStudy() {
         software. Each Apple TV boots into a SwiftUI app that pulls a list of
         &ldquo;slides&rdquo; from Supabase and cycles through them with an A/B
         slot crossfade. A slide is either a static image (still uploaded by
-        ops, no rendering needed) or a <em>dynamic</em> slide — code that pulls
+        ops, no rendering needed) or a <em>dynamic</em> slide: code that pulls
         fresh data each time it appears.
       </P>
       <P>
         Distribution is via{" "}
-        <strong>Apple Business Manager + Mosyle MDM</strong> as a custom app —
+        <strong>Apple Business Manager + Mosyle MDM</strong> as a custom app,
         so I push to GitHub, archive a build, and our IT admin promotes it to
         every Apple TV in the office. No one walks anywhere.
       </P>
 
       <H2>What got built, day by day</H2>
 
-      <H3>Day 1 — slide engine & Strava</H3>
+      <H3>Day 1: slide engine & Strava</H3>
       <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
         <li>
           Supabase schema for slides (type, dynamic_key, duration, order,
           enabled).
         </li>
         <li>
-          SwiftUI slideshow with A/B slot crossfade — incoming slide mounts in
+          SwiftUI slideshow with A/B slot crossfade: incoming slide mounts in
           the inactive slot, opacity animates, slots flip, outgoing slot
           clears.
         </li>
@@ -127,7 +127,7 @@ export default function FavoritedTVStudy() {
         </li>
       </ul>
 
-      <H3>Day 2 — admin panel & three more leaderboards</H3>
+      <H3>Day 2: admin panel & three more leaderboards</H3>
       <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
         <li>
           Drag-and-drop slide reorder, multi-file upload, and a reusable image
@@ -137,7 +137,7 @@ export default function FavoritedTVStudy() {
         <li>
           Team page with department dropdowns (Operations, Marketing, Product,
           Engineering, Data, Trust &amp; Safety, Customer Support, CG, Design),
-          plus avatar upload — including paste-from-clipboard so MaiLinh can
+          plus avatar upload, including paste-from-clipboard so MaiLinh can
           copy Slack profile pics straight into the admin.
         </li>
         <li>
@@ -156,7 +156,7 @@ export default function FavoritedTVStudy() {
         </li>
       </ul>
 
-      <H3>Day 3 — caches, polish, and distribution</H3>
+      <H3>Day 3: caches, polish, and distribution</H3>
       <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
         <li>
           Universal people directory: <Mono>strava_athletes</Mono> became the
@@ -165,12 +165,12 @@ export default function FavoritedTVStudy() {
           fallback for streamers we don't have a face for yet.
         </li>
         <li>
-          A shared <Mono>AvatarCache</Mono> singleton: 24-hour disk persistence
-          + an in-memory map so views can read synchronously during body
-          render. No flicker on crossfade.
+          A shared <Mono>AvatarCache</Mono> singleton with 24-hour disk
+          persistence + an in-memory map so views can read synchronously during
+          body render. No flicker on crossfade.
         </li>
         <li>
-          Slides preload two ahead — data + avatars — during the previous
+          Slides preload two ahead (data + avatars) during the previous
           slide's hold time, so the crossfade arrives at fully-ready views.
         </li>
         <li>
@@ -189,9 +189,9 @@ export default function FavoritedTVStudy() {
         </li>
       </ul>
 
-      <H3>Day 4 — the live wall</H3>
+      <H3>Day 4: the live wall</H3>
       <P>
-        A 3×2 grid of Favorited creators streaming live, muted, on the wall —
+        A 3×2 grid of Favorited creators streaming live, muted, on the wall,
         so the team can glance over and see what's happening on the platform
         in real time. Each tile shows the creator's avatar, handle, viewer
         count, stream title, and a ticking &ldquo;LIVE 2h 14m&rdquo; duration.
@@ -252,7 +252,7 @@ export default function FavoritedTVStudy() {
         30 hours, end to end. The shift from &ldquo;rendered video on
         Plex&rdquo; to &ldquo;app pulling from Supabase&rdquo; paid for itself
         the first week ops didn't have to open Premiere. The live wall is the
-        chapter that wouldn't have been possible at all under the old setup —
+        chapter that wouldn't have been possible at all under the old setup,
         but it's only the latest of several things that wouldn't have been
         possible. Each new dynamic slide costs an afternoon now; under the
         old system, it cost MaiLinh a Tuesday.

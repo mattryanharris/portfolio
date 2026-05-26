@@ -5,7 +5,7 @@ import { useEffect, type ReactNode } from "react";
 import type { Project } from "../../data/portfolio";
 
 /** Click-outside / Esc-to-close modal containing a full case study.
- *  Backed by Next.js intercepting routes — the underlying URL changes to
+ *  Backed by Next.js intercepting routes: the underlying URL changes to
  *  /projects/<slug>, so links are shareable and back/forward navigate cleanly.
  */
 export default function ProjectModal({
@@ -45,7 +45,7 @@ export default function ProjectModal({
         aria-label={`${project.title} case study`}
         className="relative flex h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
       >
-        {/* Floating close button — stays visible while modal interior scrolls */}
+        {/* Floating close button, stays visible while modal interior scrolls */}
         <button
           onClick={() => router.back()}
           aria-label="Close"
@@ -54,7 +54,7 @@ export default function ProjectModal({
           ✕
         </button>
 
-        {/* Scrollable case-study body — scrollbar hidden via .no-scrollbar */}
+        {/* Scrollable case-study body, scrollbar hidden via .no-scrollbar */}
         <div className="no-scrollbar flex-1 overflow-y-auto font-sans text-[color:var(--foreground)]">
           {/* Hero band */}
           <div

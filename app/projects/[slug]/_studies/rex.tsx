@@ -66,7 +66,7 @@ function Metrics({ items }: { items: { num: string; label: string }[] }) {
 function CodeBlock() {
   return (
     <pre className="my-6 overflow-x-auto rounded-lg bg-[#0d0a07] px-5 py-5 font-mono text-[12px] leading-relaxed text-[#7dd66f]">
-      {`// pose index — built once, reused for every scene
+      {`// pose index, built once, reused for every scene
 // 0 embarrassed · 1 shocked · 2 neutral · 3 confident
 // 4 happy · 5 victorious · 6 thinking · 7 scared
 // 8 pointing02 · 9 pointing01 · 10 OTTExcited · 11 annoyed
@@ -127,20 +127,20 @@ function Events() {
   );
 }
 
-/** Discipline breakdown — what Matt personally owned on this project. */
+/** Discipline breakdown: what Matt personally owned on this project. */
 function Roles() {
   const roles: [string, string][] = [
     [
       "Creative direction",
-      "Created Rex end to end — the character, the premise of a ghost who doesn’t know he’s dead, the lore universe, and the season-long story that answered why ghosts were on the app. Wrote every line of dialogue.",
+      "Created Rex end to end: the character, the premise of a ghost who doesn’t know he’s dead, the lore universe, and the season-long story that answered why ghosts were on the app. Wrote every line of dialogue.",
     ],
     [
       "Product",
-      "Shaped the CEO’s ghost-gun instinct into a six-week serialized event: the milestone-reward structure, the lore-unlock loop, and the capture/release finale — all reusing the platform’s existing gifting mechanic.",
+      "Shaped the CEO’s ghost-gun instinct into a six-week serialized event: the milestone-reward structure, the lore-unlock loop, and the capture/release finale, all reusing the platform’s existing gifting mechanic.",
     ],
     [
       "Art direction",
-      "Directed the visual language with the animation and CG teams — the eighties, spare-parts ghost-gun aesthetic that made Rex a TV repairman, plus the twelve-pose character library.",
+      "Directed the visual language with the animation and CG teams: the eighties, spare-parts ghost-gun aesthetic that made Rex a TV repairman, plus the twelve-pose character library.",
     ],
     [
       "Motion direction",
@@ -148,7 +148,7 @@ function Roles() {
     ],
     [
       "Engineering",
-      "Wrote the Braze code — the HTML/JS that binds each line and pose into the Rive view-model at runtime and fires the seen / skip / complete analytics events.",
+      "Wrote the Braze code: the HTML/JS that binds each line and pose into the Rive view-model at runtime and fires the seen / skip / complete analytics events.",
     ],
   ];
   return (
@@ -175,7 +175,7 @@ function Roles() {
   );
 }
 
-/** The finale capture/release split — real Braze event totals. */
+/** The finale capture/release split: real Braze event totals. */
 function SplitBar() {
   return (
     <div className="my-6">
@@ -219,7 +219,7 @@ export default function RexStudy() {
             Role
           </dt>
           <dd className="mt-1">
-            Solo — product, creative / art / motion direction, and code
+            Solo: product, creative / art / motion direction, and code
           </dd>
         </div>
         <div>
@@ -248,37 +248,37 @@ export default function RexStudy() {
 
       <H2>The brief: &ldquo;I want a ghost gun&rdquo;</H2>
       <P>
-        The previous year&rsquo;s spooky season was bare bones — a few seasonal
+        The previous year&rsquo;s spooky season was bare bones: a few seasonal
         mechanics, nothing that stuck. For the follow-up, the CEO had a clear
         instinct: a ghost-busting mechanic. A gun. You point it, you bust
         ghosts.
       </P>
       <P>
-        Great hook, one problem — there was no <em>why</em>. If you&rsquo;re
+        Great hook, one problem: there was no <em>why</em>. If you&rsquo;re
         building a world and grounding it in some kind of reality, the obvious
         question hangs in the air: why the hell are there ghosts on a
         live-streaming app? A gun with no story is just a button. So the real
         assignment wasn&rsquo;t &ldquo;build a ghost gun.&rdquo; It was: take
         that instinct and ground it in something we could actually build a
-        world on — something that could get <em>bigger</em>.
+        world on, something that could get <em>bigger</em>.
       </P>
 
       <H2>The answer: Rex Radcliffe</H2>
       <P>
-        Rex was the answer to &ldquo;why ghosts?&rdquo; — a character to hand
+        Rex was the answer to &ldquo;why ghosts?&rdquo;: a character to hand
         you the gun, explain the stakes, and pull you from one moment to the
         next. He started simple, just a ghost hunter, with two guardrails:
         don&rsquo;t take it too seriously, and don&rsquo;t rip off existing IP.
       </P>
       <P>
         The character direction actually came from the <em>prop</em>. The ghost
-        gun was designed with the animation team to feel distinctly eighties —
+        gun was designed with the animation team to feel distinctly eighties:
         not slick, but cobbled together from spare parts, vacuum tubes and all.
         A gadget like that needs an owner who&rsquo;d build it, so{" "}
         <strong>a TV repairman</strong> made the most sense: someone with the
         junk-drawer engineering chops to duct-tape a Spectro Scanner 5000 together.
-        The prop grounded the person. From there it was about finding his voice
-        — loud, theatrical, certain he&rsquo;s the world&rsquo;s number one
+        The prop grounded the person. From there it was about finding his
+        voice: loud, theatrical, certain he&rsquo;s the world&rsquo;s number one
         ghost hunter, warm underneath the bravado.
       </P>
       <Dialogue
@@ -293,21 +293,21 @@ export default function RexStudy() {
       <H2>The secret hiding in plain sight</H2>
       <P>
         Here&rsquo;s what made it more than a mascot: from the very first design
-        sync, the whole arc was built toward one reveal —{" "}
+        sync, the whole arc was built toward one reveal.{" "}
         <strong>Rex himself is a ghost</strong>. He died on a hunt back in the
         eighties and never realized it. He&rsquo;s been hunting his own kind the
         whole time, oblivious.
       </P>
       <P>
         That secret was seeded, not sprung. The clues were planted in the
-        milestone lore — most of all in the Carousel Lady, written as
+        milestone lore, most of all in the Carousel Lady, written as
         Rex&rsquo;s own great-great-grandmother, a Victorian spirit doomed to
         search endlessly for her descendants. A living man wouldn&rsquo;t
         register on a dead ancestor&rsquo;s radar. The breadcrumb was right
         there for anyone grinding hard enough to collect it.
       </P>
       <Dialogue
-        who="Rex · Lore Drop — The Carousel Lady"
+        who="Rex · Lore Drop: The Carousel Lady"
         lines={[
           "“She looks kinda familiar, like an old photo from my family tree. Gives me the creeps.”",
           "“Last time, she mouthed something. Couldn’t hear it, but I swear it was a name.”",
@@ -321,20 +321,20 @@ export default function RexStudy() {
         in-app messages. The key build decision was a constraint turned into a
         feature: we couldn&rsquo;t animate every line. So instead of bespoke
         animation per beat, I built out every <em>pose</em> Rex would ever need
-        — shocked, confident, scared, annoyed, victorious — twelve in total.
+        (shocked, confident, scared, annoyed, victorious), twelve in total.
         Each line of dialogue simply carries a pose number. Change the line,
         change the pose, and Rex re-performs.
       </P>
       <CodeBlock />
       <P>
-        To ship a new scene, you edit that array — no build, no release, no
+        To ship a new scene, you edit that array: no build, no release, no
         engineering ticket. That&rsquo;s the entire reason the team could move
         at the speed it did, on a marketing cadence instead of an engineering
         one.
       </P>
       <Flow />
       <P>
-        And it&rsquo;s instrumented at the lifecycle level — the seen event
+        And it&rsquo;s instrumented at the lifecycle level: the seen event
         fires the instant Rive loads and the spinner hides, with graceful
         fallbacks down the bridge so nothing depends on the native app:
       </P>
@@ -347,13 +347,13 @@ export default function RexStudy() {
         was figuring out how Rex fit into every ghost&rsquo;s story. The intro
         squashed every question a new player would have, handed over the Buster,
         walked them through a first catch, and sent them off. Then every bust
-        milestone — measured in ghost gifts sent — unlocked a Lore Drop that fed
+        milestone (measured in ghost gifts sent) unlocked a Lore Drop that fed
         another thread of the mystery.
       </P>
       <Dialogue
-        who="Rex · 1,000 Ghosts — The Reaper"
+        who="Rex · 1,000 Ghosts: The Reaper"
         lines={[
-          "“Just saw that cloaked skeleton. Doesn’t chase — just stares with that green rock in his hand. Every time he raises that amulet, whole towns go silent.”",
+          "“Just saw that cloaked skeleton. Doesn’t chase, just stares with that green rock in his hand. Every time he raises that amulet, whole towns go silent.”",
           "“If he looks your way, don’t wave back. Just trust me.”",
         ]}
       />
@@ -362,7 +362,7 @@ export default function RexStudy() {
         the story together, heavier grinders catching everyone else up. And it
         reframed the gifts themselves: nobody thinks of a live-stream gift as
         something with <em>lore</em>. Suddenly these little transactional
-        objects carried weight — and the leaderboard stopped being a number
+        objects carried weight, and the leaderboard stopped being a number
         going up and became appointment content.
       </P>
 
@@ -376,7 +376,7 @@ export default function RexStudy() {
         ]}
       />
       <P>
-        Rex&rsquo;s weekly recaps delivered the numbers in his own voice —
+        Rex&rsquo;s weekly recaps delivered the numbers in his own voice:
         personalized, leaderboard-aware story beats naming real top hunters,
         assembled from editable data and shipped through CRM, not a release.
         Week one alone cleared 262K ghosts.
@@ -384,7 +384,7 @@ export default function RexStudy() {
       <Quote>
         &ldquo;Week one is in the bag and you maniacs went full throttle. Over
         two hundred sixty-two thousand ghosts sent packin&rsquo;! That&rsquo;s a
-        monster start — but don&rsquo;t get too comfy.&rdquo;
+        monster start, but don&rsquo;t get too comfy.&rdquo;
       </Quote>
 
       <H2>The payoff: the reveal, and the choice</H2>
@@ -393,7 +393,7 @@ export default function RexStudy() {
         swung open on a hinge to drop the one thing hidden the entire experience:{" "}
         <strong>Rex&rsquo;s ghostly tail</strong>. He doesn&rsquo;t know until
         that moment. The hunter was the haunt all along. Then the season handed
-        the player the controls — one last choice that inverts the whole arc:{" "}
+        the player the controls. One last choice that inverts the whole arc:{" "}
         <strong>capture Rex, or release him?</strong> Each choice fired its own
         Braze event, so the split is real data.
       </P>
@@ -408,8 +408,8 @@ export default function RexStudy() {
 
       <H2>What I owned</H2>
       <P>
-        Everything above — the character, the story, the pose rig, the Braze
-        code, the finale — was one person across five disciplines.
+        Everything above (the character, the story, the pose rig, the Braze
+        code, the finale) was one person across five disciplines.
       </P>
       <Roles />
 
@@ -422,17 +422,17 @@ export default function RexStudy() {
       </P>
       <ul className="my-4 list-disc space-y-2 pl-6 leading-7">
         <li>
-          <strong>For users</strong> — spooky season got a soul. The ghosts had
+          <strong>For users</strong>: spooky season got a soul. The ghosts had
           a reason, the gifts had lore, the leaderboard had stakes, the finale
           had a genuine emotional choice.
         </li>
         <li>
-          <strong>For the team</strong> — a self-serve narrative engine. New
+          <strong>For the team</strong>: a self-serve narrative engine. New
           beats, recaps, and milestone drops shipped on a marketing cadence off
           one universal pose rig.
         </li>
         <li>
-          <strong>For the platform</strong> — the same Rive-on-Braze approach
+          <strong>For the platform</strong>: the same Rive-on-Braze approach
           became the template for what came next, including a Wrapped-style
           year-in-review built entirely in Rive.
         </li>
