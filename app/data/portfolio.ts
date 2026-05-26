@@ -252,7 +252,11 @@ export const projects: Project[] = [
       "Android ops app for warehouse packing, improving packing speed and reducing fulfillment errors.",
     companyId: "rebud",
     year: "2021",
-    cover: { background: "#84cc16", label: "rebud.packerkit" },
+    cover: {
+      background: "#1e3a30",
+      label: "rebud.packerkit",
+      image: "/projects/packerkit.png",
+    },
     status: "summary",
   },
 
