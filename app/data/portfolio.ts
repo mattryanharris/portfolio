@@ -309,7 +309,7 @@ export const projects: Project[] = [
     slug: "crosswire",
     title: "Crosswire",
     tagline:
-      "Ported a closed-loop simulation from C#/.NET on Windows to C++/Qt on Linux — including real-time decryption of radio signals into usable data.",
+      "Ported a closed-loop simulation from C#/.NET on Windows to C++/Qt on Linux — including real-time decryption of Link 16 tactical-data-link messages.",
     companyId: "navair",
     year: "2017",
     cover: {

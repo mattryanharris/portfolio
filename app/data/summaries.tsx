@@ -387,9 +387,12 @@ export const summaries: Record<string, ReactNode> = {
         identically on both ends. Cross-platform parity was the whole point.
       </P>
       <P>
-        Part of it handled <strong>encrypted radio signals</strong>: take in the
-        encrypted stream, decrypt it, and turn it into readable data the
-        simulation could use in real time.
+        Part of it handled <strong>Link 16</strong> — the U.S./NATO tactical
+        data link that aircraft, ships, and ground units use to share real-time
+        battlefield tracking, kept jam- and intercept-resistant by encryption
+        and frequency hopping. I took in the encrypted Link 16 traffic,
+        decrypted it, and parsed it into readable tactical data the simulation
+        could use in real time.
       </P>
       <P>
         I finished my slice over the ten weeks and wrote the documentation and
