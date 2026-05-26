@@ -234,7 +234,11 @@ export const projects: Project[] = [
       "Designed + shipped the checkout flow for Rebud's first retail dispensary.",
     companyId: "rebud",
     year: "2022",
-    cover: { background: "#65a30d", label: "rebud.pos" },
+    cover: {
+      background: "#1e3a30",
+      label: "rebud.pos",
+      image: "/projects/rebud-pos.png",
+    },
     status: "summary",
   },
   {
