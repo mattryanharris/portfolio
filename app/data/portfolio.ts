@@ -146,7 +146,11 @@ export const projects: Project[] = [
       "A receipt printer on my desk that takes telegrams from anyone on the internet. Inspired by The Bear.",
     companyId: "personal",
     year: "2025",
-    cover: { background: "#f59e0b", label: "message.matt" },
+    cover: {
+      background: "#f59e0b",
+      label: "message.matt",
+      image: "/projects/message-matt.png",
+    },
     status: "summary",
   },
 
