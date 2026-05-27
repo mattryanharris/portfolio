@@ -136,7 +136,11 @@ export const projects: Project[] = [
       "Smart-home room scanner. Wyze cams + Claude vision + Supabase + React/iOS.",
     companyId: "personal",
     year: "2026",
-    cover: { background: "#10b981", label: "tidy" },
+    cover: {
+      background: "#10b981",
+      label: "tidy",
+      image: "/projects/tidy.png",
+    },
     status: "summary",
   },
   {
